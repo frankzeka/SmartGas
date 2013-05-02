@@ -170,7 +170,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean encontrou = false;//pra indicar se achou ou não
         int total = fichario.size();//pra contar as fichas
-        for (int x=0; x<total;x++){
+        for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
            if(ficha.nome.compareTo(EntradaNome.getText())==0){
                JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
@@ -258,3 +258,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton pesquisar;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
