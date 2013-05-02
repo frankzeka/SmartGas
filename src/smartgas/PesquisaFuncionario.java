@@ -49,7 +49,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         Ok = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -168,10 +168,21 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
 
     private void pesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarMouseClicked
         // TODO add your handling code here:
-        boolean encontrou = false;
+        boolean encontrou = false;//pra indicar se achou ou não
+        int total = fichario.size();//pra contar as fichas
+        for (int x=0; x<total;x++){
+           ficha = fichario.get(x);//pega a ficha atual
+           if(ficha.nome.compareTo(EntradaNome.toString())==0){
+               JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+               encontrou = true;
+           }
+            if(!encontrou){
+            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
+            }
+    
+        }  
         
-        
-       
+ 
     }//GEN-LAST:event_pesquisarMouseClicked
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
