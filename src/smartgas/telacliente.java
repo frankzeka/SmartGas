@@ -77,18 +77,6 @@ int total =0;
 
         jLabel7.setText("CEP");
 
-        entradaendereco.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                entradaenderecoMouseClicked(evt);
-            }
-        });
-
-        entradatelefone.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                entradatelefoneMouseClicked(evt);
-            }
-        });
-
         Salva.setText("Salvar");
         Salva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -288,14 +276,6 @@ int total =0;
                
         
     }//GEN-LAST:event_ProximoMouseClicked
-
-    private void entradaenderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradaenderecoMouseClicked
-        // TODO add your handling code here:     
-    }//GEN-LAST:event_entradaenderecoMouseClicked
-
-    private void entradatelefoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entradatelefoneMouseClicked
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_entradatelefoneMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:

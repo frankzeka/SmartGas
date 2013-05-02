@@ -19,4 +19,4 @@ public class venda implements Serializable{
     float valor_total;    
 }
 
-//Luc@s2424
+//

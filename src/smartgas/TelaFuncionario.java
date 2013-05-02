@@ -7,8 +7,10 @@ package smartgas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class TelaFuncionario extends javax.swing.JFrame {
     ArrayList <Funcionario> fichario = new ArrayList <Funcionario>();
+    Funcionario ficha = new Funcionario();
+    int total=0;
     /**
      * Creates new form TelaFuncionario
      */
@@ -57,13 +61,10 @@ public class TelaFuncionario extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         EntradaEmail = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         Salvar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        Pesquisar = new javax.swing.JButton();
+        Sair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -182,10 +183,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setText("Anterior");
-
-        jButton3.setText("Próximo");
-
         Salvar.setText("Salvar");
         Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,25 +190,31 @@ public class TelaFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Pesquisar");
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Sair");
+        Sair.setText("Sair");
+        Sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SairMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(Salvar)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -219,11 +222,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
                     .addComponent(Salvar)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(Pesquisar)
+                    .addComponent(Sair))
                 .addContainerGap())
         );
 
@@ -249,7 +250,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         pack();
@@ -279,8 +280,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        // TODO add your handling code here:
-         ficha= new Funcionario();        
+        // TODO add your handling code here:       
         ficha.nome=EntradaNome.getText();
          EntradaNome.setText("");
         ficha.endereco=EntradaEndereco.getText();
@@ -300,7 +300,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         ficha.comissao=(int) Float.parseFloat(EntradaComissao.getText());
          EntradaComissao.setText("");
         total++;
-        atual = atual+1; //vai para a prox ficha       
         fichario.add(ficha);
          try {
             FileOutputStream arquivo = new FileOutputStream ("funcionario.ser");
@@ -316,6 +315,15 @@ public class TelaFuncionario extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_SalvarActionPerformed
+
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        // TODO add your handling code here:
+        new PesquisaFuncionario().setVisible(true);
+    }//GEN-LAST:event_PesquisarActionPerformed
+
+    private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -361,11 +369,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JTextField EntradaSalario;
     private javax.swing.JTextField EntradaTelefone;
+    private javax.swing.JButton Pesquisar;
+    private javax.swing.JButton Sair;
     private javax.swing.JButton Salvar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

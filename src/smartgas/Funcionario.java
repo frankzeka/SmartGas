@@ -4,11 +4,13 @@
  */
 package smartgas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Administrador
  */
-public class Funcionario {
+public class Funcionario implements Serializable { 
 String nome;
 String endereco;
 String telefone;
