@@ -172,15 +172,16 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         int total = fichario.size();//pra contar as fichas
         for (int x=0; x<total;x++){
            ficha = fichario.get(x);//pega a ficha atual
-           if(ficha.nome.compareTo(EntradaNome.toString())==0){
+           if(ficha.nome.compareTo(EntradaNome.getText())==0){
                JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
            }
-            if(!encontrou){
-            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-            }
-    
+           JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+   
         }  
+        if(!encontrou){
+            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
+       }
         
  
     }//GEN-LAST:event_pesquisarMouseClicked
