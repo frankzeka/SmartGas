@@ -157,32 +157,19 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void OkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkMouseClicked
-        // TODO add your handling code here:
-        ficha = new Funcionario();        
-        ficha.nome= Ok.getText();
-        Ok.setText("");
-        ficha.endereco = Ok.getText();
-        Ok .setText("");
-        ficha.telefone = Ok.getText();
-        Ok.setText("");
-        
+        // TODO add your handling code here:  
         
     }//GEN-LAST:event_OkMouseClicked
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
         // TODO add your handling code here:
-        ficha = new Funcionario();        
-        ficha.nome= cancelar.getText();
-        cancelar.setText("");
-        ficha.endereco = cancelar.getText();
-        cancelar.setText("");
-        ficha.telefone = cancelar.getText();
-        cancelar.setText("");
-              
+          
     }//GEN-LAST:event_cancelarMouseClicked
 
     private void pesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarMouseClicked
         // TODO add your handling code here:
+        boolean encontrou = false;
+        
         
        
     }//GEN-LAST:event_pesquisarMouseClicked
