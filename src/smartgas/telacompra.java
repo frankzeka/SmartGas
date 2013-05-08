@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class telacompra extends javax.swing.JFrame {
     ArrayList <fornecedor> fichas_fornecedor = new ArrayList<fornecedor>();
+    ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
 
     /**
      * Creates new form telacompra
@@ -173,6 +174,7 @@ public class telacompra extends javax.swing.JFrame {
         catch(IOException e){
                    JOptionPane.showMessageDialog(null, "Erro na leitura dos dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
     }
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
