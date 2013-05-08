@@ -174,6 +174,19 @@ public class telacompra extends javax.swing.JFrame {
         catch(IOException e){
                    JOptionPane.showMessageDialog(null, "Erro na leitura dos dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
     }
+                try{
+            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("cliente.ser")));
+            fichas_cliente = (ArrayList<cliente>) arqEntrada.readObject();
+        }
+        catch(ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo de dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException e){
+                   JOptionPane.showMessageDialog(null, "Erro na leitura dos dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
+    } 
         
     }//GEN-LAST:event_formWindowOpened
 
