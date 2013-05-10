@@ -36,26 +36,26 @@ int total =0;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        variavel = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        entradanome = new javax.swing.JTextField();
-        entradaendereco = new javax.swing.JTextField();
-        entradatelefone = new javax.swing.JTextField();
-        entradacidade = new javax.swing.JTextField();
-        entradacpf = new javax.swing.JTextField();
-        entradaemail = new javax.swing.JTextField();
-        entradacep = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         Salva = new javax.swing.JButton();
         Anterior = new javax.swing.JButton();
         Proximo = new javax.swing.JButton();
-        Cancela = new javax.swing.JButton();
-        variavel = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -63,19 +63,102 @@ int total =0;
             }
         });
 
-        jLabel1.setText("Nome");
+        variavel.setText("0");
 
-        jLabel2.setText("Endereço");
+        jLabel1.setText("Nome :");
 
-        jLabel3.setText("Telefone");
+        jTextField1.setText("jTextField1");
 
-        jLabel4.setText("Cidade");
+        jLabel2.setText("Endereço :");
 
-        jLabel5.setText("CPF");
+        jTextField2.setText("jTextField2");
 
-        jLabel6.setText("Email");
+        jLabel3.setText("Telefone :");
 
-        jLabel7.setText("CEP");
+        jTextField3.setText("jTextField3");
+
+        jLabel4.setText("Cidade :");
+
+        jTextField4.setText("jTextField4");
+
+        jLabel5.setText("C.P.F :");
+
+        jTextField5.setText("jTextField5");
+
+        jLabel6.setText("E-mail :");
+
+        jTextField6.setText("jTextField6");
+
+        jLabel7.setText("Cep :");
+
+        jTextField7.setText("jTextField7");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(jTextField2)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(jTextField5)))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
 
         Salva.setText("Salvar");
         Salva.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,106 +167,65 @@ int total =0;
             }
         });
 
-        Anterior.setText("Anterior");
+        Anterior.setText("Pesquisar");
         Anterior.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AnteriorMouseClicked(evt);
             }
         });
 
-        Proximo.setText("Próximo");
+        Proximo.setText("Sair");
         Proximo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ProximoMouseClicked(evt);
             }
         });
 
-        Cancela.setText("Cancela");
-
-        variavel.setText("0");
-
-        jLabel8.setText("Registro:");
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(Salva, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(Anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(Proximo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Salva)
+                    .addComponent(Anterior)
+                    .addComponent(Proximo))
+                .addGap(25, 25, 25))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(442, 442, 442)
+                .addComponent(variavel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Salva)
-                        .addGap(18, 18, 18)
-                        .addComponent(Anterior)
-                        .addGap(18, 18, 18)
-                        .addComponent(Proximo)
-                        .addGap(18, 18, 18)
-                        .addComponent(Cancela))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(entradanome, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(entradaendereco)
-                            .addComponent(entradacidade)
-                            .addComponent(entradacpf, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entradatelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(entradacep, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                            .addComponent(entradaemail))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(variavel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(entradanome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(entradaendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(entradatelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(entradacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(entradacpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(entradaemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(entradacep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(variavel)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Salva)
-                    .addComponent(Anterior)
-                    .addComponent(Proximo)
-                    .addComponent(Cancela))
-                .addGap(19, 19, 19))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(variavel))
         );
 
         pack();
@@ -192,129 +234,23 @@ int total =0;
     private void SalvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalvaMouseClicked
         // TODO add your handling code here:
         
-        ficha= new cliente();        
-        ficha.nome=entradanome.getText();
-         entradanome.setText("");
-                
-        ficha.endereco=entradaendereco.getText();
-        entradaendereco.setText("");        
-       
-        ficha.telefone=Integer.parseInt(entradatelefone.getText());
-        entradatelefone.setText("");       
         
-        ficha.cidade=entradacidade.getText();
-        entradacidade.setText("");       
-        
-        ficha.CPF=Integer.parseInt(entradacpf.getText());
-        entradacpf.setText(""); 
-        
-        
-        ficha.email=entradaemail.getText();
-        entradaemail.setText("");  
-        
-        ficha.cep=Integer.parseInt(entradacep.getText());
-        entradacep.setText("");
-        total++;
-        atual = atual+1; //vai para a prox ficha
-        variavel.setText(Integer.toString(atual));
-        fichario.add(ficha);
-        try {
-            FileOutputStream arquivo = new FileOutputStream("clientes.ser");
-            try {
-                ObjectOutputStream salva = new  ObjectOutputStream (arquivo);
-                salva.writeObject(fichario);
-                salva.close();
-                        
-            } catch (IOException ex) {
-                Logger.getLogger(telacliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(telacliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_SalvaMouseClicked
 
     private void AnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnteriorMouseClicked
         // TODO add your handling code here:
-        if (atual<=0){
-            //avisa o usuario que chegou no inicio
-            variavel.setText("Inicio atingido");
-            atual=0;//volta para 0 para nao dar problema
-        }else{
-            atual = atual-1;//volta para a anterior 
-            variavel.setText(Integer.toString(atual));
-            //mostra qual o registro atual
-        }
-        ficha = new cliente();
-        ficha = fichario.get(atual);// pega a ficha atual do fichario
-        entradanome.setText(ficha.nome);
-        entradaendereco.setText(ficha.endereco);
-        entradatelefone.setText(Integer.toString(ficha.telefone));
-        entradacidade.setText(ficha.cidade);
-        entradacpf.setText(Integer.toString(ficha.CPF));
-        entradacep.setText(Integer.toString(ficha.cep));
-        entradaemail.setText(ficha.email);   
+      
     }//GEN-LAST:event_AnteriorMouseClicked
 
     private void ProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProximoMouseClicked
         // TODO add your handling code here:
-        if (atual>total){
-            variavel.setText("Fim atingido!");
-            atual=total;
-        }else{
-            atual=atual+1;
-            variavel.setText(Integer.toString(atual));
-        }
-        
-        entradanome.setText(ficha.nome);
-        entradaendereco.setText(ficha.endereco);
-        entradatelefone.setText(Integer.toString(ficha.telefone));
-        entradacidade.setText(ficha.cidade);
-        entradacpf.setText(Integer.toString(ficha.CPF));
-        entradacep.setText(Integer.toString(ficha.cep));
-        entradaemail.setText(ficha.email);
-               
+       
         
     }//GEN-LAST:event_ProximoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        File testa = new File ("cliente.ser");
-        if (testa.exists()){
-            try {
-                FileInputStream arquivo = new FileInputStream("cliente.ser");
-                ObjectInputStream carregar;
-                try {
-                    carregar = new ObjectInputStream(arquivo);
-                    try {
-                        Object objeto =  carregar.readObject();
-                        fichario = (ArrayList<cliente>) objeto;
-                        carregar.close();
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(telacliente.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                } catch (IOException ex) {
-                    Logger.getLogger(telacliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(telacliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                
-
-                total = fichario.size();
-                atual = total-1;
-                ficha = new cliente();
-                ficha = fichario.get(atual);// pega a ficha atual do fichario
-                entradanome.setText(ficha.nome);
-                entradaendereco.setText(ficha.endereco);
-                entradatelefone.setText(Integer.toString(ficha.telefone));
-                entradacidade.setText(ficha.cidade);
-                entradacpf.setText(Integer.toString(ficha.CPF));
-                entradacep.setText(Integer.toString(ficha.cep));
-                entradaemail.setText(ficha.email);   
-
-        }
+      
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -362,16 +298,8 @@ int total =0;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Anterior;
-    private javax.swing.JButton Cancela;
     private javax.swing.JButton Proximo;
     private javax.swing.JButton Salva;
-    private javax.swing.JTextField entradacep;
-    private javax.swing.JTextField entradacidade;
-    private javax.swing.JTextField entradacpf;
-    private javax.swing.JTextField entradaemail;
-    private javax.swing.JTextField entradaendereco;
-    private javax.swing.JTextField entradanome;
-    private javax.swing.JTextField entradatelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -379,7 +307,15 @@ int total =0;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel variavel;
     // End of variables declaration//GEN-END:variables
 }
