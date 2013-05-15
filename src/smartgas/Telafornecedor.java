@@ -46,8 +46,6 @@ int total =0;//conta o total de fichas criadas
         entradacidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         entradatelefone = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        contador = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Salvar = new javax.swing.JButton();
         pesquisar = new javax.swing.JButton();
@@ -77,10 +75,6 @@ int total =0;//conta o total de fichas criadas
 
         entradatelefone.setPreferredSize(new java.awt.Dimension(180, 28));
 
-        jLabel5.setText("Registro atual:");
-
-        contador.setText("0");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,12 +101,6 @@ int total =0;//conta o total de fichas criadas
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(entradaendereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(34, 34, 34)
-                .addComponent(contador)
-                .addGap(105, 105, 105))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,11 +119,7 @@ int total =0;//conta o total de fichas criadas
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(entradatelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(contador))
-                .addGap(52, 52, 52))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         Salvar.setText("Salvar");
@@ -196,7 +180,7 @@ int total =0;//conta o total de fichas criadas
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -222,7 +206,7 @@ int total =0;//conta o total de fichas criadas
         //atualiza o contador
         atual++;// faz a mesma coisa que atual=atual+1
         //mostra em qual registro está(registro atual)
-        contador.setText(Integer.toString(atual));
+
         fichario.add(ficha);
         FileOutputStream filestream;
         try {
@@ -250,7 +234,7 @@ int total =0;//conta o total de fichas criadas
             atual--;
             
         }
-        contador.setText(Integer.toString(atual));
+
         ficha = fichario.get(atual);
         entradanome.setText(ficha.nome);
         entradaendereco.setText(ficha.endereco);
@@ -275,7 +259,7 @@ int total =0;//conta o total de fichas criadas
                      entradaendereco.setText(ficha.endereco);
                      entradatelefone.setText(Integer.toString(ficha.telefone));
                      entradacidade.setText(ficha.cidade);
-                     contador.setText(Integer.toString(atual));
+
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -297,7 +281,7 @@ int total =0;//conta o total de fichas criadas
         else {
             atual++;
         }
-        contador.setText(Integer.toString(atual));
+
         ficha = fichario.get(atual);        
         entradanome.setText(ficha.nome);
         entradaendereco.setText(ficha.endereco);
@@ -349,7 +333,6 @@ int total =0;//conta o total de fichas criadas
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salvar;
-    private javax.swing.JLabel contador;
     private javax.swing.JTextField entradacidade;
     private javax.swing.JTextField entradaendereco;
     private javax.swing.JTextField entradanome;
@@ -358,7 +341,6 @@ int total =0;//conta o total de fichas criadas
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
