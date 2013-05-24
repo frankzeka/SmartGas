@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class telacompra extends javax.swing.JFrame {
     ArrayList <fornecedor> fichas_fornecedor = new ArrayList<fornecedor>();
-    ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
+    ArrayList <Funcionario> fichas_funcionario = new ArrayList<Funcionario>();
+    ArrayList <produto> fichas_produto = new ArrayList<produto>();
 
     /**
      * Creates new form telacompra
@@ -38,19 +39,18 @@ public class telacompra extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        entradafornecedor = new javax.swing.JTextField();
         itensvenda = new javax.swing.JScrollPane();
         tabelaitens = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        entradaproduto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         entradaquantidade = new javax.swing.JTextField();
         entradavalorcompra = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        ComboP = new javax.swing.JComboBox();
+        Combo = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Compra");
         setName("formtelacompra"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -63,9 +63,7 @@ public class telacompra extends javax.swing.JFrame {
 
         jLabel1.setText("Fornecedor:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(40, 40, 80, 17);
-        jPanel1.add(entradafornecedor);
-        entradafornecedor.setBounds(120, 35, 340, 30);
+        jLabel1.setBounds(40, 40, 80, 14);
 
         tabelaitens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,36 +107,32 @@ public class telacompra extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
                         .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jLabel4))
-                    .addComponent(entradaproduto))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(entradaproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
-                .addGap(30, 30, 30)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,11 +141,19 @@ public class telacompra extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(30, 90, 450, 140);
+
+        Combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Combo);
+        Combo.setBounds(130, 40, 350, 20);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -164,31 +166,59 @@ public class telacompra extends javax.swing.JFrame {
         try{
             ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("fornecedor.ser")));
             fichas_fornecedor = (ArrayList<fornecedor>) arqEntrada.readObject();
+            int totalF = fichas_fornecedor.size();
+            for (int x=0; x<totalF;x++){ //for
+                Combo.addItem(fichas_fornecedor.get(x).nome);
+            }
         }
         catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null, "Arquivo não encontrado", "SmartGas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado Fornecedor", "SmartGas", JOptionPane.ERROR_MESSAGE);
         }
         catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo de dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo de dados Fornecedor", "SmartGas", JOptionPane.ERROR_MESSAGE);
         }
         catch(IOException e){
-                   JOptionPane.showMessageDialog(null, "Erro na leitura dos dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
-    }
-                try{
-            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("cliente.ser")));
-            fichas_cliente = (ArrayList<cliente>) arqEntrada.readObject();
+                   JOptionPane.showMessageDialog(null, "Erro na leitura dos dados Fornecedor", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        }
+        //Funcionario
+        try{
+            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
+            fichas_funcionario = (ArrayList<Funcionario>) arqEntrada.readObject();
         }
         catch(ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null, "Arquivo não encontrado", "SmartGas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado Funcionario", "SmartGas", JOptionPane.ERROR_MESSAGE);
         }
         catch(FileNotFoundException e){
-            JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo de dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo de dados Funcionario", "SmartGas", JOptionPane.ERROR_MESSAGE);
         }
         catch(IOException e){
-                   JOptionPane.showMessageDialog(null, "Erro na leitura dos dados", "SmartGas", JOptionPane.ERROR_MESSAGE);
-    } 
+                   JOptionPane.showMessageDialog(null, "Erro na leitura dos dados Funcionario", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        } 
+        //Produto
+        try{
+            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("produto.ser")));
+            fichas_produto = (ArrayList<produto>) arqEntrada.readObject();
+            int totalP = fichas_produto.size();
+            for (int x=0; x<totalP;x++){ //for
+                ComboP.addItem(fichas_produto.get(x).tipo);
+            }
+        }
+        catch(ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado cliente", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo de dados cliente", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(IOException e){
+                   JOptionPane.showMessageDialog(null, "Erro na leitura dos dados cliente", "SmartGas", JOptionPane.ERROR_MESSAGE);
+        }
+        
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +255,8 @@ public class telacompra extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField entradafornecedor;
-    private javax.swing.JTextField entradaproduto;
+    private javax.swing.JComboBox Combo;
+    private javax.swing.JComboBox ComboP;
     private javax.swing.JTextField entradaquantidade;
     private javax.swing.JTextField entradavalorcompra;
     private javax.swing.JScrollPane itensvenda;
