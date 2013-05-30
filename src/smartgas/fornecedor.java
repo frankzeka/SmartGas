@@ -15,4 +15,6 @@ public class fornecedor implements Serializable {
     String endereco;
     int telefone;
     String cidade;
+    int cnpj;
+    
 }

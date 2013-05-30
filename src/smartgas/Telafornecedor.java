@@ -37,6 +37,8 @@ int total =0;//conta o total de fichas criadas
     private void initComponents() {
 
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         entradanome = new javax.swing.JTextField();
@@ -46,12 +48,19 @@ int total =0;//conta o total de fichas criadas
         entradacidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         entradatelefone = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        entradacnpj = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         Salvar = new javax.swing.JButton();
         pesquisar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -75,6 +84,8 @@ int total =0;//conta o total de fichas criadas
 
         entradatelefone.setPreferredSize(new java.awt.Dimension(180, 28));
 
+        jLabel7.setText("Cnpj");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,24 +94,28 @@ int total =0;//conta o total de fichas criadas
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(entradatelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(entradacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(307, Short.MAX_VALUE))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(entradacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(entradatelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(17, 17, 17)
-                        .addComponent(entradanome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(entradaendereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(entradaendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(entradacnpj))
+                            .addComponent(entradanome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,18 +123,20 @@ int total =0;//conta o total de fichas criadas
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(entradanome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradanome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(entradaendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(entradaendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(entradacnpj))
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(entradacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entradacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(entradatelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(53, 53, 53))
         );
 
         Salvar.setText("Salvar");
@@ -130,9 +147,9 @@ int total =0;//conta o total de fichas criadas
         });
 
         pesquisar.setText("Pesquisar");
-        pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pesquisarMouseClicked(evt);
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
             }
         });
 
@@ -142,6 +159,8 @@ int total =0;//conta o total de fichas criadas
                 sairMouseClicked(evt);
             }
         });
+
+        jLabel5.setText("By almir");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,7 +173,11 @@ int total =0;//conta o total de fichas criadas
                 .addComponent(pesquisar)
                 .addGap(28, 28, 28)
                 .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(60, 60, 60))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +187,8 @@ int total =0;//conta o total de fichas criadas
                     .addComponent(Salvar)
                     .addComponent(pesquisar)
                     .addComponent(sair))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jLabel5))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,16 +219,19 @@ int total =0;//conta o total de fichas criadas
         ficha.endereco = entradaendereco.getText();
         ficha.telefone = Integer.parseInt(entradatelefone.getText());
         ficha.cidade = entradacidade.getText();
+        ficha.cnpj = Integer.parseInt(entradacnpj.getText());
         //acabou a coleta de dados
         //Limpa os campos
         entradanome.setText("");
         entradaendereco.setText("");
         entradatelefone.setText("");
         entradacidade.setText("");
+        entradacnpj.setText("");
+       
         //limpando os campos
         
         //atualiza o contador
-        atual++;// faz a mesma coisa que atual=atual+1
+        //atual++;// faz a mesma coisa que atual=atual+1
         //mostra em qual registro está(registro atual)
 
         fichario.add(ficha);
@@ -225,23 +252,6 @@ int total =0;//conta o total de fichas criadas
         
     }//GEN-LAST:event_SalvarMouseClicked
 
-    private void pesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarMouseClicked
-        // TODO add your handling code here:
-        // 0 1 2 3 4 5 6 7 8 9
-        if (atual<=0){
-            atual=0;
-        }else{
-            atual--;
-            
-        }
-
-        ficha = fichario.get(atual);
-        entradanome.setText(ficha.nome);
-        entradaendereco.setText(ficha.endereco);
-        entradatelefone.setText(Integer.toString(ficha.telefone));
-        entradacidade.setText(ficha.cidade);
-    }//GEN-LAST:event_pesquisarMouseClicked
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
      File teste = new File("fornecedor.ser"); 
      if (teste.exists()){
@@ -253,12 +263,7 @@ int total =0;//conta o total de fichas criadas
                      Object objeto = fluxo.readObject();
                      fichario = (ArrayList<fornecedor>) objeto ;
                      total = fichario.size();
-                     atual = total -1;
-                     ficha = fichario.get(atual);
-                     entradanome.setText(ficha.nome);
-                     entradaendereco.setText(ficha.endereco);
-                     entradatelefone.setText(Integer.toString(ficha.telefone));
-                     entradacidade.setText(ficha.cidade);
+                     atual = total;                                      
 
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -287,8 +292,14 @@ int total =0;//conta o total de fichas criadas
         entradaendereco.setText(ficha.endereco);
         entradatelefone.setText(Integer.toString(ficha.telefone));
         entradacidade.setText(ficha.cidade);
+        entradacnpj.setText(Integer.toString(ficha.cnpj));
         
     }//GEN-LAST:event_sairMouseClicked
+
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+        // TODO add your handling code here:
+        new PesquisaFornecedor().setVisible(true);
+    }//GEN-LAST:event_pesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,6 +345,7 @@ int total =0;//conta o total de fichas criadas
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salvar;
     private javax.swing.JTextField entradacidade;
+    private javax.swing.JTextField entradacnpj;
     private javax.swing.JTextField entradaendereco;
     private javax.swing.JTextField entradanome;
     private javax.swing.JTextField entradatelefone;
@@ -341,9 +353,13 @@ int total =0;//conta o total de fichas criadas
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton pesquisar;
     private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
