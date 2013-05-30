@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,12 +45,11 @@ public class telacompra extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        entradaquantidade = new javax.swing.JTextField();
-        entradavalorcompra = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        ComboP = new javax.swing.JComboBox();
-        Combo = new javax.swing.JComboBox();
+        Produto = new javax.swing.JComboBox();
+        EntradaPreco = new javax.swing.JFormattedTextField();
+        Qtde = new javax.swing.JSpinner();
+        Fornecedor = new javax.swing.JComboBox();
 
         setTitle("Tela de Compra");
         setName("formtelacompra"); // NOI18N
@@ -63,7 +63,7 @@ public class telacompra extends javax.swing.JFrame {
 
         jLabel1.setText("Fornecedor:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(40, 40, 80, 14);
+        jLabel1.setBounds(40, 40, 80, 17);
 
         tabelaitens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,13 +92,20 @@ public class telacompra extends javax.swing.JFrame {
 
         jLabel3.setText("Quantidade:");
 
-        entradaquantidade.setText("0");
-
-        entradavalorcompra.setText("R$ 0,00");
-
-        jLabel4.setText("Valor de compra:");
-
         jButton1.setText("Incluir");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        EntradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço de compra"));
+        EntradaPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,23 +113,20 @@ public class telacompra extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
-                        .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(Produto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Qtde, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(EntradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,30 +134,30 @@ public class telacompra extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                            .addComponent(Qtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(EntradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(30, 90, 450, 140);
 
-        Combo.addActionListener(new java.awt.event.ActionListener() {
+        Fornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboActionPerformed(evt);
+                FornecedorActionPerformed(evt);
             }
         });
-        jPanel1.add(Combo);
-        Combo.setBounds(130, 40, 350, 20);
+        jPanel1.add(Fornecedor);
+        Fornecedor.setBounds(130, 40, 350, 25);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -168,7 +172,7 @@ public class telacompra extends javax.swing.JFrame {
             fichas_fornecedor = (ArrayList<fornecedor>) arqEntrada.readObject();
             int totalF = fichas_fornecedor.size();
             for (int x=0; x<totalF;x++){ //for
-                Combo.addItem(fichas_fornecedor.get(x).nome);
+                Fornecedor.addItem(fichas_fornecedor.get(x).nome);
             }
         }
         catch(ClassNotFoundException e){
@@ -200,7 +204,7 @@ public class telacompra extends javax.swing.JFrame {
             fichas_produto = (ArrayList<produto>) arqEntrada.readObject();
             int totalP = fichas_produto.size();
             for (int x=0; x<totalP;x++){ //for
-                ComboP.addItem(fichas_produto.get(x).tipo);
+                Produto.addItem(fichas_produto.get(x).tipo);
             }
         }
         catch(ClassNotFoundException e){
@@ -216,9 +220,20 @@ public class telacompra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void ComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboActionPerformed
+    private void FornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ComboActionPerformed
+    }//GEN-LAST:event_FornecedorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Object linha[] = {Produto.getSelectedItem(),Qtde.getValue(),EntradaPreco.getText()};
+        DefaultTableModel dtm = (DefaultTableModel) tabelaitens.getModel();
+        dtm.addRow(linha);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,16 +270,15 @@ public class telacompra extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox Combo;
-    private javax.swing.JComboBox ComboP;
-    private javax.swing.JTextField entradaquantidade;
-    private javax.swing.JTextField entradavalorcompra;
+    private javax.swing.JFormattedTextField EntradaPreco;
+    private javax.swing.JComboBox Fornecedor;
+    private javax.swing.JComboBox Produto;
+    private javax.swing.JSpinner Qtde;
     private javax.swing.JScrollPane itensvenda;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTable tabelaitens;
