@@ -157,11 +157,6 @@ int total =0;
         );
 
         Salva.setText("Salvar");
-        Salva.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SalvaMouseClicked(evt);
-            }
-        });
         Salva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalvaActionPerformed(evt);
@@ -231,12 +226,6 @@ int total =0;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void SalvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalvaMouseClicked
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_SalvaMouseClicked
 
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
         // TODO add your handling code here:
