@@ -213,7 +213,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
             fichas_cliente = (ArrayList<cliente>) arqEntrada.readObject();
             int totalF = fichas_cliente.size();
             for (int x=0; x<totalF;x++){ //for
-                ComboF.addItem(fichas_cliente.get(x).nome);
+                ComboC.addItem(fichas_cliente.get(x).nome);
             }
         }
         catch(ClassNotFoundException e){
@@ -229,6 +229,10 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
         try{
             ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
             fichas_funcionario = (ArrayList<Funcionario>) arqEntrada.readObject();
+            int totalF = fichas_funcionario.size();
+            for (int x=0; x<totalF;x++){ //for
+                ComboF.addItem(fichas_funcionario.get(x).nome);
+            }
         }
         catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, "Arquivo não encontrado Funcionario", "SmartGas", JOptionPane.ERROR_MESSAGE);
