@@ -200,7 +200,7 @@
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="Pesquisar" min="-2" pref="82" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="Proximo" min="-2" pref="82" max="-2" attributes="0"/>
+                  <Component id="Sair" min="-2" pref="82" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -211,7 +211,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Salva" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Pesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Proximo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Sair" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
@@ -232,16 +232,15 @@
             <Property name="text" type="java.lang.String" value="Pesquisar"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PesquisarMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PesquisarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Proximo">
+        <Component class="javax.swing.JButton" name="Sair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ProximoMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="SairMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
