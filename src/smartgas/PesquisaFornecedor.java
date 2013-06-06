@@ -166,14 +166,14 @@ int total =0;//conta o total de fichas criadas
        
                 Object linha[] = {ficha.hashCode(), ficha.nome, ficha.cnpj};
                 dtm.addRow(linha);
-               //JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
            }
            //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
    
         }  
         if(!encontrou){
-            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_PesquisarActionPerformed
 
