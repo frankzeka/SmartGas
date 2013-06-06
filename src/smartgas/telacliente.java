@@ -53,7 +53,7 @@ int total =0;
         EntradaCep = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         Salva = new javax.swing.JButton();
-        Anterior = new javax.swing.JButton();
+        Pesquisar = new javax.swing.JButton();
         Proximo = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -168,10 +168,15 @@ int total =0;
             }
         });
 
-        Anterior.setText("Pesquisar");
-        Anterior.addMouseListener(new java.awt.event.MouseAdapter() {
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AnteriorMouseClicked(evt);
+                PesquisarMouseClicked(evt);
+            }
+        });
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
             }
         });
 
@@ -190,7 +195,7 @@ int total =0;
                 .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(Salva, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(Anterior, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(Proximo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -200,7 +205,7 @@ int total =0;
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salva)
-                    .addComponent(Anterior)
+                    .addComponent(Pesquisar)
                     .addComponent(Proximo))
                 .addGap(25, 25, 25))
         );
@@ -233,10 +238,10 @@ int total =0;
         
     }//GEN-LAST:event_SalvaMouseClicked
 
-    private void AnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnteriorMouseClicked
+    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
         // TODO add your handling code here:
       
-    }//GEN-LAST:event_AnteriorMouseClicked
+    }//GEN-LAST:event_PesquisarMouseClicked
 
     private void ProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProximoMouseClicked
         // TODO add your handling code here:
@@ -274,6 +279,11 @@ int total =0;
          EntradaEmail.setText("");
         total++;
     }//GEN-LAST:event_SalvaActionPerformed
+
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        // TODO add your handling code here:
+        new PesquisaCliente().setVisible(true);
+    }//GEN-LAST:event_PesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,7 +328,6 @@ int total =0;
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Anterior;
     private javax.swing.JTextField EntradaCPF;
     private javax.swing.JTextField EntradaCep;
     private javax.swing.JTextField EntradaCidade;
@@ -326,6 +335,7 @@ int total =0;
     private javax.swing.JTextField EntradaEndereco;
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JTextField EntradaTelefone;
+    private javax.swing.JButton Pesquisar;
     private javax.swing.JButton Proximo;
     private javax.swing.JButton Salva;
     private javax.swing.JLabel jLabel1;
