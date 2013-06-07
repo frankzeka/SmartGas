@@ -159,6 +159,11 @@ int total =0;//conta o total de fichas criadas
                 sairMouseClicked(evt);
             }
         });
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("By almir");
 
@@ -300,6 +305,15 @@ int total =0;//conta o total de fichas criadas
         // TODO add your handling code here:
         new PesquisaFornecedor().setVisible(true);
     }//GEN-LAST:event_pesquisarActionPerformed
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        // TODO add your handling code here:
+         if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  
+            }  
+          
+       
+    }//GEN-LAST:event_sairActionPerformed
 
     /**
      * @param args the command line arguments
