@@ -54,7 +54,7 @@ int total =0;
         jPanel3 = new javax.swing.JPanel();
         Salva = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
-        Proximo = new javax.swing.JButton();
+        Sair = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -157,11 +157,6 @@ int total =0;
         );
 
         Salva.setText("Salvar");
-        Salva.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SalvaMouseClicked(evt);
-            }
-        });
         Salva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalvaActionPerformed(evt);
@@ -169,21 +164,16 @@ int total =0;
         });
 
         Pesquisar.setText("Pesquisar");
-        Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PesquisarMouseClicked(evt);
-            }
-        });
         Pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PesquisarActionPerformed(evt);
             }
         });
 
-        Proximo.setText("Sair");
-        Proximo.addMouseListener(new java.awt.event.MouseAdapter() {
+        Sair.setText("Sair");
+        Sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ProximoMouseClicked(evt);
+                SairMouseClicked(evt);
             }
         });
 
@@ -197,7 +187,7 @@ int total =0;
                 .addGap(50, 50, 50)
                 .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
-                .addComponent(Proximo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +196,7 @@ int total =0;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salva)
                     .addComponent(Pesquisar)
-                    .addComponent(Proximo))
+                    .addComponent(Sair))
                 .addGap(25, 25, 25))
         );
 
@@ -232,22 +222,11 @@ int total =0;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SalvaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalvaMouseClicked
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_SalvaMouseClicked
-
-    private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_PesquisarMouseClicked
-
-    private void ProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProximoMouseClicked
+    private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
         // TODO add your handling code here:
        
         
-    }//GEN-LAST:event_ProximoMouseClicked
+    }//GEN-LAST:event_SairMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -278,6 +257,19 @@ int total =0;
         ficha.email=EntradaEmail.getText();
          EntradaEmail.setText("");
         total++;
+         try {
+            FileOutputStream arquivo = new FileOutputStream ("cliente.ser");
+            try {
+                ObjectOutputStream salva = new ObjectOutputStream(arquivo);
+                salva.writeObject(fichario);
+                salva.close();
+            } catch (IOException ex) {
+                Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_SalvaActionPerformed
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
@@ -336,7 +328,7 @@ int total =0;
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JTextField EntradaTelefone;
     private javax.swing.JButton Pesquisar;
-    private javax.swing.JButton Proximo;
+    private javax.swing.JButton Sair;
     private javax.swing.JButton Salva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
