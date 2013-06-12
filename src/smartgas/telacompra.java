@@ -50,6 +50,8 @@ public class telacompra extends javax.swing.JFrame {
         EntradaPreco = new javax.swing.JFormattedTextField();
         Qtde = new javax.swing.JSpinner();
         Fornecedor = new javax.swing.JComboBox();
+        FinalizarCompra = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
 
         setTitle("Tela de Compra");
         setName("formtelacompra"); // NOI18N
@@ -159,9 +161,27 @@ public class telacompra extends javax.swing.JFrame {
         jPanel1.add(Fornecedor);
         Fornecedor.setBounds(130, 40, 350, 25);
 
+        FinalizarCompra.setText("Finalizar Compra");
+        FinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FinalizarCompraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(FinalizarCompra);
+        FinalizarCompra.setBounds(90, 440, 130, 29);
+
+        Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Cancelar);
+        Cancelar.setBounds(300, 440, 90, 29);
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(518, 473));
+        setSize(new java.awt.Dimension(518, 530));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,6 +255,14 @@ public class telacompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FinalizarCompraActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,7 +298,9 @@ public class telacompra extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancelar;
     private javax.swing.JFormattedTextField EntradaPreco;
+    private javax.swing.JButton FinalizarCompra;
     private javax.swing.JComboBox Fornecedor;
     private javax.swing.JComboBox Produto;
     private javax.swing.JSpinner Qtde;
