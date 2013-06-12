@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -23,17 +26,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="CadastroVenda" min="-2" max="-2" attributes="0"/>
-                  <Component id="CadastroProduto" min="-2" max="-2" attributes="0"/>
-                  <Component id="CadastroFuncionario" min="-2" max="-2" attributes="0"/>
-                  <Component id="CadastroCompra" min="-2" max="-2" attributes="0"/>
-                  <Component id="CadastroCliente" min="-2" max="-2" attributes="0"/>
-                  <Component id="CadastroFornecedor" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="245" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="painelprincipal" min="-2" pref="131" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="painelcadastro" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="painelrelatorio" min="-2" pref="310" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,70 +41,149 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="CadastroFornecedor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="CadastroCliente" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="CadastroCompra" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="CadastroFuncionario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="CadastroProduto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="CadastroVenda" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="painelrelatorio" max="32767" attributes="0"/>
+                  <Component id="painelcadastro" alignment="0" max="32767" attributes="0"/>
+                  <Component id="painelprincipal" alignment="0" pref="440" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="CadastroFornecedor">
+    <Container class="javax.swing.JPanel" name="painelprincipal">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastro Fornecedor"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">
+            <CompoundBorder>
+              <Border PropertyName="inside" info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </CompoundBorder>
+          </Border>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroFornecedorMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="CadastroCliente">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="0"/>
+        <Property name="rows" type="int" value="4"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="Venda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Venda"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="VendaMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Compra">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Compra"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CompraMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="cadastro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="cadastros"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cadastroMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="relatorios">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="relatorios"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="relatoriosMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relatoriosActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="painelcadastro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastro Cliente"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+            <MatteColorBorder/>
+          </Border>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroClienteMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="CadastroCompra">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="0"/>
+        <Property name="rows" type="int" value="4"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="CadastroFornecedor">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastro Fornecedor"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroFornecedorMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CadastroFuncionario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastro Funcionario"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroFuncionarioMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CadastroProduto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastro Produto"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroProdutoMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroProdutoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CadastroCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastro Cliente"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroClienteMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroClienteActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="painelrelatorio">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastro Compra"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
+          </Border>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroCompraMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="CadastroFuncionario">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastro Funcionario"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroFuncionarioMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="CadastroProduto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastro Produto"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroProdutoMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="CadastroVenda">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastro Venda"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CadastroVendaMouseClicked"/>
-      </Events>
-    </Component>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="0"/>
+        <Property name="rows" type="int" value="1"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="relatorioestoque">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" relatorio estoque"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relatorioestoqueActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="relatoriovenda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="relatorio venda"/>
+            <Property name="alignmentX" type="float" value="0.6"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

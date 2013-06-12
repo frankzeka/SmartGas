@@ -15,6 +15,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        
+       this.setExtendedState(MAXIMIZED_BOTH);  
     }
 
     /**
@@ -26,14 +28,69 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        painelprincipal = new javax.swing.JPanel();
+        Venda = new javax.swing.JButton();
+        Compra = new javax.swing.JButton();
+        cadastro = new javax.swing.JButton();
+        relatorios = new javax.swing.JButton();
+        painelcadastro = new javax.swing.JPanel();
         CadastroFornecedor = new javax.swing.JButton();
-        CadastroCliente = new javax.swing.JButton();
-        CadastroCompra = new javax.swing.JButton();
         CadastroFuncionario = new javax.swing.JButton();
         CadastroProduto = new javax.swing.JButton();
-        CadastroVenda = new javax.swing.JButton();
+        CadastroCliente = new javax.swing.JButton();
+        painelrelatorio = new javax.swing.JPanel();
+        relatorioestoque = new javax.swing.JButton();
+        relatoriovenda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        painelprincipal.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        painelprincipal.setLayout(new java.awt.GridLayout(4, 0));
+
+        Venda.setText("Venda");
+        Venda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VendaMouseClicked(evt);
+            }
+        });
+        painelprincipal.add(Venda);
+
+        Compra.setText("Compra");
+        Compra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CompraMouseClicked(evt);
+            }
+        });
+        painelprincipal.add(Compra);
+
+        cadastro.setText("cadastros");
+        cadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastroMouseClicked(evt);
+            }
+        });
+        painelprincipal.add(cadastro);
+
+        relatorios.setText("relatorios");
+        relatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                relatoriosMouseClicked(evt);
+            }
+        });
+        relatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatoriosActionPerformed(evt);
+            }
+        });
+        painelprincipal.add(relatorios);
+
+        painelcadastro.setBorder(new javax.swing.border.MatteBorder(null));
+        painelcadastro.setLayout(new java.awt.GridLayout(4, 0));
 
         CadastroFornecedor.setText("Cadastro Fornecedor");
         CadastroFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -41,20 +98,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 CadastroFornecedorMouseClicked(evt);
             }
         });
-
-        CadastroCliente.setText("Cadastro Cliente");
-        CadastroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CadastroClienteMouseClicked(evt);
-            }
-        });
-
-        CadastroCompra.setText("Cadastro Compra");
-        CadastroCompra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CadastroCompraMouseClicked(evt);
-            }
-        });
+        painelcadastro.add(CadastroFornecedor);
 
         CadastroFuncionario.setText("Cadastro Funcionario");
         CadastroFuncionario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,6 +106,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 CadastroFuncionarioMouseClicked(evt);
             }
         });
+        painelcadastro.add(CadastroFuncionario);
 
         CadastroProduto.setText("Cadastro Produto");
         CadastroProduto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,45 +114,63 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 CadastroProdutoMouseClicked(evt);
             }
         });
-
-        CadastroVenda.setText("Cadastro Venda");
-        CadastroVenda.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CadastroVendaMouseClicked(evt);
+        CadastroProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroProdutoActionPerformed(evt);
             }
         });
+        painelcadastro.add(CadastroProduto);
+
+        CadastroCliente.setText("Cadastro Cliente");
+        CadastroCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CadastroClienteMouseClicked(evt);
+            }
+        });
+        CadastroCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroClienteActionPerformed(evt);
+            }
+        });
+        painelcadastro.add(CadastroCliente);
+
+        painelrelatorio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        painelrelatorio.setLayout(new java.awt.GridLayout());
+
+        relatorioestoque.setText(" relatorio estoque");
+        relatorioestoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioestoqueActionPerformed(evt);
+            }
+        });
+        painelrelatorio.add(relatorioestoque);
+
+        relatoriovenda.setText("relatorio venda");
+        relatoriovenda.setAlignmentX(0.6F);
+        painelrelatorio.add(relatoriovenda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CadastroVenda)
-                    .addComponent(CadastroProduto)
-                    .addComponent(CadastroFuncionario)
-                    .addComponent(CadastroCompra)
-                    .addComponent(CadastroCliente)
-                    .addComponent(CadastroFornecedor))
-                .addContainerGap(245, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelprincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(painelcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(painelrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CadastroFornecedor)
-                .addGap(28, 28, 28)
-                .addComponent(CadastroCliente)
-                .addGap(26, 26, 26)
-                .addComponent(CadastroCompra)
-                .addGap(18, 18, 18)
-                .addComponent(CadastroFuncionario)
-                .addGap(18, 18, 18)
-                .addComponent(CadastroProduto)
-                .addGap(27, 27, 27)
-                .addComponent(CadastroVenda)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painelrelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painelcadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -124,10 +187,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new telacliente().setVisible(true);
     }//GEN-LAST:event_CadastroClienteMouseClicked
 
-    private void CadastroCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroCompraMouseClicked
+    private void CompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompraMouseClicked
         // TODO add your handling code here:
         new telacompra().setVisible(true);
-    }//GEN-LAST:event_CadastroCompraMouseClicked
+    }//GEN-LAST:event_CompraMouseClicked
 
     private void CadastroFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroFuncionarioMouseClicked
         // TODO add your handling code here:
@@ -139,10 +202,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
         new telaproduto().setVisible(true);
     }//GEN-LAST:event_CadastroProdutoMouseClicked
 
-    private void CadastroVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroVendaMouseClicked
+    private void VendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VendaMouseClicked
         // TODO add your handling code here:
         new telavenda().setVisible(true);
-    }//GEN-LAST:event_CadastroVendaMouseClicked
+    }//GEN-LAST:event_VendaMouseClicked
+
+    private void CadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CadastroClienteActionPerformed
+
+    private void CadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroProdutoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_CadastroProdutoActionPerformed
+
+    private void relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatoriosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relatoriosActionPerformed
+
+    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
+        // TODO add your handling code here:
+         painelcadastro.setVisible(true);
+    }//GEN-LAST:event_cadastroMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        painelcadastro.setVisible(false);
+        painelrelatorio.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void relatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosMouseClicked
+        // TODO add your handling code here:
+         painelrelatorio.setVisible(true);
+    }//GEN-LAST:event_relatoriosMouseClicked
+
+    private void relatorioestoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioestoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relatorioestoqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,10 +283,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CadastroCliente;
-    private javax.swing.JButton CadastroCompra;
     private javax.swing.JButton CadastroFornecedor;
     private javax.swing.JButton CadastroFuncionario;
     private javax.swing.JButton CadastroProduto;
-    private javax.swing.JButton CadastroVenda;
+    private javax.swing.JButton Compra;
+    private javax.swing.JButton Venda;
+    private javax.swing.JButton cadastro;
+    private javax.swing.JPanel painelcadastro;
+    private javax.swing.JPanel painelprincipal;
+    private javax.swing.JPanel painelrelatorio;
+    private javax.swing.JButton relatorioestoque;
+    private javax.swing.JButton relatorios;
+    private javax.swing.JButton relatoriovenda;
     // End of variables declaration//GEN-END:variables
 }
