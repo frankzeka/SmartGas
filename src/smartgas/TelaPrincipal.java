@@ -195,6 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void CadastroFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroFuncionarioMouseClicked
         // TODO add your handling code here:
         new TelaFuncionario().setVisible(true);
+
     }//GEN-LAST:event_CadastroFuncionarioMouseClicked
 
     private void CadastroProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroProdutoMouseClicked
@@ -218,11 +219,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatoriosActionPerformed
         // TODO add your handling code here:
+        if (painelcadastro.isVisible()){
+            painelcadastro.setVisible(false);
+        }
     }//GEN-LAST:event_relatoriosActionPerformed
 
     private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
         // TODO add your handling code here:
          painelcadastro.setVisible(true);
+         if (painelrelatorio.isVisible()){
+            painelrelatorio.setVisible(false);
+        }
     }//GEN-LAST:event_cadastroMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
