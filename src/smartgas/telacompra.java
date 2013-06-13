@@ -24,8 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class telacompra extends javax.swing.JFrame {
     ArrayList <fornecedor> fichas_fornecedor = new ArrayList<fornecedor>();
     ArrayList <Funcionario> fichas_funcionario = new ArrayList<Funcionario>();
-    ArrayList <produto> fichas_produto = new ArrayList<produto>();
-    produto ficha  = new produto();
+    ArrayList <produto> fichas_produto = new ArrayList<produto>();  
     ArrayList<compra>  fichas_compra = new ArrayList<compra>();
    
 
@@ -53,10 +52,10 @@ public class telacompra extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        Produto = new javax.swing.JComboBox();
-        EntradaPreco = new javax.swing.JFormattedTextField();
-        Qtde = new javax.swing.JSpinner();
-        Fornecedor = new javax.swing.JComboBox();
+        entradaproduto = new javax.swing.JComboBox();
+        entradaPreco = new javax.swing.JFormattedTextField();
+        entradaquantidade = new javax.swing.JSpinner();
+        entradafornecedor = new javax.swing.JComboBox();
         FinalizarCompra = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
 
@@ -113,8 +112,8 @@ public class telacompra extends javax.swing.JFrame {
             }
         });
 
-        EntradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço de compra"));
-        EntradaPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        entradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço de compra"));
+        entradaPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -126,15 +125,15 @@ public class telacompra extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
-                        .addComponent(Produto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Qtde, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
-                        .addComponent(EntradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -143,30 +142,30 @@ public class telacompra extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradaproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(Qtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(EntradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(30, 90, 450, 140);
 
-        Fornecedor.addActionListener(new java.awt.event.ActionListener() {
+        entradafornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FornecedorActionPerformed(evt);
+                entradafornecedorActionPerformed(evt);
             }
         });
-        jPanel1.add(Fornecedor);
-        Fornecedor.setBounds(130, 40, 350, 25);
+        jPanel1.add(entradafornecedor);
+        entradafornecedor.setBounds(130, 40, 350, 25);
 
         FinalizarCompra.setText("Finalizar Compra");
         FinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +198,7 @@ public class telacompra extends javax.swing.JFrame {
             fichas_fornecedor = (ArrayList<fornecedor>) arqEntrada.readObject();
             int totalF = fichas_fornecedor.size();
             for (int x=0; x<totalF;x++){ //for
-                Fornecedor.addItem(fichas_fornecedor.get(x).nome);
+                entradafornecedor.addItem(fichas_fornecedor.get(x).nome);
             }
         }
         catch(ClassNotFoundException e){
@@ -231,7 +230,7 @@ public class telacompra extends javax.swing.JFrame {
             fichas_produto = (ArrayList<produto>) arqEntrada.readObject();
             int totalP = fichas_produto.size();
             for (int x=0; x<totalP;x++){ //for
-                Produto.addItem(fichas_produto.get(x).tipo);
+                entradaproduto.addItem(fichas_produto.get(x).tipo);
             }
         }
         catch(ClassNotFoundException e){
@@ -247,13 +246,13 @@ public class telacompra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void FornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FornecedorActionPerformed
+    private void entradafornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradafornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FornecedorActionPerformed
+    }//GEN-LAST:event_entradafornecedorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Object linha[] = {Produto.getSelectedItem(),Qtde.getValue(),EntradaPreco.getText()};
+        Object linha[] = {entradaproduto.getSelectedItem(),entradaquantidade.getValue(),entradaPreco.getText()};
         DefaultTableModel dtm = (DefaultTableModel) tabelaitens.getModel();
         dtm.addRow(linha);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -263,12 +262,17 @@ public class telacompra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-        // TODO add your handling code here:   
+        // TODO add your handling code here:
+          compra ficha_compra = new compra();
+          ficha_compra.cod_fornecedor =  entradafornecedor.getSelectedItem().hashCode();
+          ficha_compra.cod_funcionario = 123;
+      
+          fichas_compra.add(ficha_compra);
          try {
             FileOutputStream  arquivo = new FileOutputStream("compra.ser");
-            try {
+           try {
                 ObjectOutputStream salva = new  ObjectOutputStream (arquivo);
-                salva.writeObject(ficha);
+                salva.writeObject(fichas_compra);
                 salva.close();
             } catch (IOException ex) {
                 Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -319,11 +323,11 @@ public class telacompra extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
-    private javax.swing.JFormattedTextField EntradaPreco;
     private javax.swing.JButton FinalizarCompra;
-    private javax.swing.JComboBox Fornecedor;
-    private javax.swing.JComboBox Produto;
-    private javax.swing.JSpinner Qtde;
+    private javax.swing.JFormattedTextField entradaPreco;
+    private javax.swing.JComboBox entradafornecedor;
+    private javax.swing.JComboBox entradaproduto;
+    private javax.swing.JSpinner entradaquantidade;
     private javax.swing.JScrollPane itensvenda;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
