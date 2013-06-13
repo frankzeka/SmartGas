@@ -7,9 +7,13 @@ package smartgas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +25,9 @@ public class telacompra extends javax.swing.JFrame {
     ArrayList <fornecedor> fichas_fornecedor = new ArrayList<fornecedor>();
     ArrayList <Funcionario> fichas_funcionario = new ArrayList<Funcionario>();
     ArrayList <produto> fichas_produto = new ArrayList<produto>();
+    produto ficha  = new produto();
+    ArrayList<compra>  fichas_compra = new ArrayList<compra>();
+   
 
     /**
      * Creates new form telacompra
@@ -256,7 +263,20 @@ public class telacompra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+         try {
+            FileOutputStream  arquivo = new FileOutputStream("compra.ser");
+            try {
+                ObjectOutputStream salva = new  ObjectOutputStream (arquivo);
+                salva.writeObject(ficha);
+                salva.close();
+            } catch (IOException ex) {
+                Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
