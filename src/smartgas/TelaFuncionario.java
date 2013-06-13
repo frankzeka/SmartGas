@@ -24,6 +24,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     ArrayList <Funcionario> fichario = new ArrayList <Funcionario>();
     Funcionario ficha = new Funcionario();
     int total=0;
+    private int atual;
     /**
      * Creates new form TelaFuncionario
      */
@@ -323,6 +324,9 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
         // TODO add your handling code here:
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();
+        }
     }//GEN-LAST:event_SairMouseClicked
 
     /**

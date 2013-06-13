@@ -135,7 +135,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelcadastro.add(CadastroCliente);
 
         painelrelatorio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        painelrelatorio.setLayout(new java.awt.GridLayout());
+        painelrelatorio.setLayout(new java.awt.GridLayout(1, 0));
 
         relatorioestoque.setText(" relatorio estoque");
         relatorioestoque.addActionListener(new java.awt.event.ActionListener() {
@@ -159,18 +159,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(painelcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(painelrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(painelrelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painelcadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                .addGap(271, 271, 271))
         );
 
         pack();
@@ -195,6 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void CadastroFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroFuncionarioMouseClicked
         // TODO add your handling code here:
         new TelaFuncionario().setVisible(true);
+
     }//GEN-LAST:event_CadastroFuncionarioMouseClicked
 
     private void CadastroProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CadastroProdutoMouseClicked
@@ -218,17 +219,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatoriosActionPerformed
         // TODO add your handling code here:
+        if (painelcadastro.isVisible()){
+            painelcadastro.setVisible(false);
+        }
     }//GEN-LAST:event_relatoriosActionPerformed
 
     private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
         // TODO add your handling code here:
          painelcadastro.setVisible(true);
+         if (painelrelatorio.isVisible()){
+            painelrelatorio.setVisible(false);
+        }
     }//GEN-LAST:event_cadastroMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        painelcadastro.setVisible(false);
-        painelrelatorio.setVisible(false);
+      painelcadastro.setVisible(false);
+     painelrelatorio.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
 
     private void relatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_relatoriosMouseClicked

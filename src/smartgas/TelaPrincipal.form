@@ -32,21 +32,21 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="painelcadastro" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="painelrelatorio" min="-2" pref="310" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="painelrelatorio" min="-2" pref="189" max="-2" attributes="0"/>
+              <EmptySpace pref="133" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="painelrelatorio" max="32767" attributes="0"/>
-                  <Component id="painelcadastro" alignment="0" max="32767" attributes="0"/>
-                  <Component id="painelprincipal" alignment="0" pref="440" max="32767" attributes="0"/>
+                  <Component id="painelcadastro" max="32767" attributes="0"/>
+                  <Component id="painelprincipal" pref="181" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
