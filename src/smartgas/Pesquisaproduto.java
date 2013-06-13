@@ -162,7 +162,7 @@ public class Pesquisaproduto extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         try{
-            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
+            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("produto.ser")));
             fichario = (ArrayList<produto>) arqEntrada.readObject();
         }
         catch(ClassNotFoundException e){

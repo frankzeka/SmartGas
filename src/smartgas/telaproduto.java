@@ -51,7 +51,7 @@ private produto fichas;
         jPanel3 = new javax.swing.JPanel();
         Salvar = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
-        Proximo = new javax.swing.JButton();
+        sair = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -67,7 +67,7 @@ private produto fichas;
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(515, 213));
+        setMinimumSize(new java.awt.Dimension(530, 213));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -163,10 +163,15 @@ private produto fichas;
             }
         });
 
-        Proximo.setText("Sair");
-        Proximo.addActionListener(new java.awt.event.ActionListener() {
+        sair.setText("Sair");
+        sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sairMouseClicked(evt);
+            }
+        });
+        sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProximoActionPerformed(evt);
+                sairActionPerformed(evt);
             }
         });
 
@@ -180,7 +185,7 @@ private produto fichas;
                 .addGap(43, 43, 43)
                 .addComponent(Pesquisar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addComponent(Proximo)
+                .addComponent(sair)
                 .addGap(56, 56, 56))
         );
         jPanel3Layout.setVerticalGroup(
@@ -190,7 +195,7 @@ private produto fichas;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salvar)
                     .addComponent(Pesquisar)
-                    .addComponent(Proximo))
+                    .addComponent(sair))
                 .addGap(59, 59, 59))
         );
 
@@ -241,7 +246,7 @@ private produto fichas;
          
     }//GEN-LAST:event_SalvarActionPerformed
 
-    private void ProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProximoActionPerformed
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
         if (atual>total){
@@ -255,7 +260,7 @@ private produto fichas;
         entradapreçounitario.setText(Float.toString(ficha.precounitario));
         entradapeso.setText(Integer.toString(ficha.peso));
         entradaquantidade.setText(ficha.tipo);  
-    }//GEN-LAST:event_ProximoActionPerformed
+    }//GEN-LAST:event_sairActionPerformed
 
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
         // TODO add your handling code here:    
@@ -286,11 +291,7 @@ private produto fichas;
         total = fichario.size();
         atual = total-1;
         ficha = new produto();
-        ficha = fichario.get(atual);// pega a ficha atual do fichario
-        EntradaTipo.setText(Integer.toString(ficha.quantidade));
-        entradapreçounitario.setText(Float.toString(ficha.precounitario));
-        entradapeso.setText(Integer.toString(ficha.peso));
-        entradaquantidade.setText(ficha.tipo);     
+        ficha = fichario.get(atual);// pega a ficha atual do fichario  
                 
         }
     
@@ -330,6 +331,13 @@ private produto fichas;
             Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SalvarMouseClicked
+
+    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
+        // TODO add your handling code here:
+      if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();         
+      }
+    }//GEN-LAST:event_sairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -375,7 +383,6 @@ private produto fichas;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaTipo;
     private javax.swing.JButton Pesquisar;
-    private javax.swing.JButton Proximo;
     private javax.swing.JButton Salvar;
     private javax.swing.JTextField entradapeso;
     private javax.swing.JTextField entradapreçounitario;
@@ -388,5 +395,6 @@ private produto fichas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
 }
