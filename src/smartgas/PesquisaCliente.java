@@ -7,8 +7,10 @@ package smartgas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,10 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PesquisaCliente extends javax.swing.JFrame {
     cliente ficha  = new cliente();
-ArrayList<cliente>  fichario = new ArrayList<cliente>();
-int atual = 0;// controla a ficha atual
-int total =0;//conta o total de fichas criadas
-
+    ArrayList<cliente>  fichario = new ArrayList<cliente>();
     /**
      * Creates new form PesquisaCliente
      */
@@ -47,12 +46,13 @@ int total =0;//conta o total de fichas criadas
         EntradaNome = new javax.swing.JTextField();
         Pesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
+        Tabela = new javax.swing.JTable();
+        aluno = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        deletar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -68,7 +68,7 @@ int total =0;//conta o total de fichas criadas
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -84,13 +84,25 @@ int total =0;//conta o total de fichas criadas
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabela);
 
-        jLabel2.setText("Direitos Reservados by Arildo");
+        aluno.setText("Direitos Reservados by Rai");
 
         jButton1.setText("Ok");
 
         jButton2.setText("Cancelar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        deletar.setText("Deletar");
+        deletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,8 +129,10 @@ int total =0;//conta o total de fichas criadas
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(deletar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(aluno)
                 .addGap(53, 53, 53))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,9 +148,10 @@ int total =0;//conta o total de fichas criadas
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(aluno)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(deletar))
                 .addGap(28, 28, 28))
         );
 
@@ -164,10 +179,7 @@ int total =0;//conta o total de fichas criadas
                     ObjectInputStream fluxo = new ObjectInputStream (arquivo);
                     try {
                      Object objeto = fluxo.readObject();
-                     fichario = (ArrayList<cliente>) objeto ;
-                     total = fichario.size();
-                     atual = total -1;
-                     ficha = fichario.get(atual);
+                     fichario = (ArrayList<cliente>) objeto ;                     
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -181,26 +193,51 @@ int total =0;//conta o total de fichas criadas
     }//GEN-LAST:event_formWindowOpened
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
-        // TODO add your handling code here:
-       boolean encontrou = false;//pra indicar se achou ou não
+       // TODO add your handling code here:
+        boolean encontrou = false;//pra indicar se achou ou não
         int total = fichario.size();//pra contar as fichas
-        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
+           aluno.setText(ficha.nome);
            if(ficha.nome.startsWith(EntradaNome.getText())){
-       
-                Object linha[] = {ficha.hashCode(), ficha.nome, ficha.endereco, ficha.CPF};
+               
+                Object linha[] = { ficha.nome,ficha.endereco, ficha.CPF};
                 dtm.addRow(linha);
-               //JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
            }
            //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
    
         }  
         if(!encontrou){
-            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
        }
     }//GEN-LAST:event_PesquisarActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void deletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarMouseClicked
+        // TODO add your handling code here:
+        int del = Tabela.getSelectedRow();
+        fichario.remove(del);
+        
+        try {
+            FileOutputStream arquivo = new FileOutputStream ("cliente.ser");
+            try {
+                ObjectOutputStream salva = new ObjectOutputStream(arquivo);
+                salva.writeObject(fichario);
+                salva.close();
+            } catch (IOException ex) {
+                Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_deletarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,12 +276,13 @@ int total =0;//conta o total de fichas criadas
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JButton Pesquisar;
+    private javax.swing.JTable Tabela;
+    private javax.swing.JLabel aluno;
+    private javax.swing.JButton deletar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

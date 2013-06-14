@@ -49,7 +49,7 @@ int total =0;
         EntradaCPF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         EntradaEmail = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        entradacep = new javax.swing.JLabel();
         EntradaCep = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         Salva = new javax.swing.JButton();
@@ -86,7 +86,7 @@ int total =0;
 
         jLabel6.setText("E-mail :");
 
-        jLabel7.setText("Cep :");
+        entradacep.setText("Cep :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -102,7 +102,7 @@ int total =0;
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel7))
+                            .addComponent(entradacep))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EntradaCep, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +149,7 @@ int total =0;
                         .addComponent(EntradaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(entradacep)
                     .addComponent(EntradaCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(EntradaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,7 +224,12 @@ int total =0;
 
     private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
         // TODO add your handling code here:
+       if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  
+            }  
+          
        
+                                    
         
     }//GEN-LAST:event_SairMouseClicked
 
@@ -256,7 +261,9 @@ int total =0;
          EntradaCPF.setText("");
         ficha.email=EntradaEmail.getText();
          EntradaEmail.setText("");
-        total++;
+         ficha.cep=Integer.parseInt(EntradaCep.getText());
+         EntradaCep.setText("");
+         fichario.add(ficha);
          try {
             FileOutputStream arquivo = new FileOutputStream ("cliente.ser");
             try {
@@ -330,13 +337,13 @@ int total =0;
     private javax.swing.JButton Pesquisar;
     private javax.swing.JButton Sair;
     private javax.swing.JButton Salva;
+    private javax.swing.JLabel entradacep;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
