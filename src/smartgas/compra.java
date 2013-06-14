@@ -13,7 +13,6 @@ import java.util.Date;
  * @author usuario
  */
 public class compra implements Serializable{
-    int cod_compra;
     int cod_funcionario;
     int cod_fornecedor;
     Date data_compra;
