@@ -150,11 +150,6 @@ private produto fichas;
                 SalvarMouseClicked(evt);
             }
         });
-        Salvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalvarActionPerformed(evt);
-            }
-        });
 
         Pesquisar.setText("Pesquisar");
         Pesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,47 +199,6 @@ private produto fichas;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-         // TODO add your handling code here:
-         ficha = new produto();
-    ficha.quantidade=Integer.parseInt(EntradaTipo.getText());
-    EntradaTipo.setText("");
-    
-    ficha.precounitario=Integer.parseInt(entradapreçounitario.getText());
-    entradapreçounitario.setText("");
-    
-    ficha.peso=Integer.parseInt(entradapeso.getText());
-    entradapeso.setText("");
-    
-    ficha.tipo = entradaquantidade.getText();
-    entradaquantidade.setText("");
-    
-    total++;
-        atual = atual+1; //vai para a prox ficha
-        
-        fichario.add(ficha);
-        try {
-            FileOutputStream  arquivo = new FileOutputStream("produto.ser");
-            try {
-                ObjectOutputStream salva = new  ObjectOutputStream (arquivo);
-                salva.writeObject(fichario);
-                salva.close();
-            } catch (IOException ex) {
-                Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-       
-    
-                 
-         
-         
-         
-         
-    }//GEN-LAST:event_SalvarActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
         // TODO add your handling code here:
@@ -319,7 +273,7 @@ private produto fichas;
         fichario.add(ficha);
         FileOutputStream filestream;
         try {
-            filestream = new FileOutputStream("fornecedor.ser");
+            filestream = new FileOutputStream("produto.ser");
             try {
                 ObjectOutputStream arquivo = new ObjectOutputStream(filestream);
                 arquivo.writeObject(fichario);

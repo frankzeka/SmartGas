@@ -4,6 +4,7 @@
  */
 package smartgas;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,7 +28,9 @@ public class telacompra extends javax.swing.JFrame {
     ArrayList <Funcionario> fichas_funcionario = new ArrayList<Funcionario>();
     ArrayList <produto> fichas_produto = new ArrayList<produto>();  
     ArrayList<compra>  fichas_compra = new ArrayList<compra>();
-   
+    ArrayList<itens_compra>fichas_itens = new ArrayList<itens_compra>();
+    compra ficha_compra = new compra();
+    float totalcompra = 0;
 
     /**
      * Creates new form telacompra
@@ -51,13 +55,16 @@ public class telacompra extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Incluir = new javax.swing.JButton();
         entradaproduto = new javax.swing.JComboBox();
-        entradaPreco = new javax.swing.JFormattedTextField();
         entradaquantidade = new javax.swing.JSpinner();
+        entradaPreco = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         entradafornecedor = new javax.swing.JComboBox();
         FinalizarCompra = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
+        jTextFieldTotal = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setTitle("Tela de Compra");
         setName("formtelacompra"); // NOI18N
@@ -100,20 +107,21 @@ public class telacompra extends javax.swing.JFrame {
 
         jLabel3.setText("Quantidade:");
 
-        jButton1.setText("Incluir");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Incluir.setText("Incluir");
+        Incluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                IncluirActionPerformed(evt);
             }
         });
 
-        entradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço de compra"));
-        entradaPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        entradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço Unitário"));
+        entradaPreco.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                entradaPrecoFocusLost(evt);
+            }
+        });
+
+        jLabel4.setText("R$");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,19 +129,21 @@ public class telacompra extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
                         .addComponent(entradaproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(Incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(6, 6, 6)
+                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -143,27 +153,19 @@ public class telacompra extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(entradaproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(Incluir))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(30, 90, 450, 140);
 
-        entradafornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                entradafornecedorActionPerformed(evt);
-            }
-        });
         jPanel1.add(entradafornecedor);
         entradafornecedor.setBounds(130, 40, 350, 25);
 
@@ -174,7 +176,7 @@ public class telacompra extends javax.swing.JFrame {
             }
         });
         jPanel1.add(FinalizarCompra);
-        FinalizarCompra.setBounds(90, 440, 130, 29);
+        FinalizarCompra.setBounds(90, 480, 130, 29);
 
         Cancelar.setText("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,11 +185,20 @@ public class telacompra extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Cancelar);
-        Cancelar.setBounds(300, 440, 90, 29);
+        Cancelar.setBounds(300, 480, 90, 29);
+
+        jTextFieldTotal.setEditable(false);
+        jTextFieldTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total"));
+        jPanel1.add(jTextFieldTotal);
+        jTextFieldTotal.setBounds(330, 430, 130, 40);
+
+        jLabel5.setText("R$");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(310, 450, 20, 17);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(518, 530));
+        setSize(new java.awt.Dimension(518, 552));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,9 +208,11 @@ public class telacompra extends javax.swing.JFrame {
             ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("fornecedor.ser")));
             fichas_fornecedor = (ArrayList<fornecedor>) arqEntrada.readObject();
             int totalF = fichas_fornecedor.size();
-            for (int x=0; x<totalF;x++){ //for
+            arqEntrada.close();
+            for (int x=0; x<totalF;x++){ 
                 entradafornecedor.addItem(fichas_fornecedor.get(x).nome);
             }
+
         }
         catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, "Arquivo não encontrado Fornecedor", "SmartGas", JOptionPane.ERROR_MESSAGE);
@@ -210,10 +223,12 @@ public class telacompra extends javax.swing.JFrame {
         catch(IOException e){
                    JOptionPane.showMessageDialog(null, "Erro na leitura dos dados Fornecedor", "SmartGas", JOptionPane.ERROR_MESSAGE);
         }
+        
         //Funcionario
         try{
             ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
             fichas_funcionario = (ArrayList<Funcionario>) arqEntrada.readObject();
+            arqEntrada.close();
         }
         catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, "Arquivo não encontrado Funcionario", "SmartGas", JOptionPane.ERROR_MESSAGE);
@@ -232,6 +247,7 @@ public class telacompra extends javax.swing.JFrame {
             for (int x=0; x<totalP;x++){ //for
                 entradaproduto.addItem(fichas_produto.get(x).tipo);
             }
+            arqEntrada.close();
         }
         catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, "Arquivo não encontrado cliente", "SmartGas", JOptionPane.ERROR_MESSAGE);
@@ -246,27 +262,27 @@ public class telacompra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void entradafornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradafornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_entradafornecedorActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirActionPerformed
+        // TODO add your handling code here:        
+        itens_compra ficha_item = new itens_compra();
         Object linha[] = {entradaproduto.getSelectedItem(),entradaquantidade.getValue(),entradaPreco.getText()};
         DefaultTableModel dtm = (DefaultTableModel) tabelaitens.getModel();
         dtm.addRow(linha);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+        ficha_item.cod_compra = ficha_compra.hashCode();
+        ficha_item.cod_produto = entradaproduto.getSelectedItem().hashCode();
+        ficha_item.preco_custo = Float.parseFloat(entradaPreco.getText());
+        ficha_item.quantidade =  Integer.parseInt(entradaquantidade.getValue().toString());
+        fichas_itens.add(ficha_item);        
+        jTextFieldTotal.setText(Float.toString(totalcompra));        
+    }//GEN-LAST:event_IncluirActionPerformed
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
-        // TODO add your handling code here:
-          compra ficha_compra = new compra();
+        // TODO add your handling code here:          
           ficha_compra.cod_fornecedor =  entradafornecedor.getSelectedItem().hashCode();
           ficha_compra.cod_funcionario = 123;
-      
+          ficha_compra.data_compra = new Date();
+          ficha_compra.itenscompra=fichas_itens;
+          ficha_compra.valor_total = totalcompra;
           fichas_compra.add(ficha_compra);
          try {
             FileOutputStream  arquivo = new FileOutputStream("compra.ser");
@@ -286,6 +302,11 @@ public class telacompra extends javax.swing.JFrame {
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CancelarActionPerformed
+
+    private void entradaPrecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_entradaPrecoFocusLost
+        // TODO add your handling code here:
+         totalcompra = (Float.parseFloat(entradaquantidade.getValue().toString()) * Float.parseFloat(entradaPreco.getText()))+totalcompra;
+    }//GEN-LAST:event_entradaPrecoFocusLost
 
     /**
      * @param args the command line arguments
@@ -324,17 +345,20 @@ public class telacompra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton FinalizarCompra;
-    private javax.swing.JFormattedTextField entradaPreco;
+    private javax.swing.JButton Incluir;
+    private javax.swing.JTextField entradaPreco;
     private javax.swing.JComboBox entradafornecedor;
     private javax.swing.JComboBox entradaproduto;
     private javax.swing.JSpinner entradaquantidade;
     private javax.swing.JScrollPane itensvenda;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldTotal;
     private javax.swing.JTable tabelaitens;
     // End of variables declaration//GEN-END:variables
 }
