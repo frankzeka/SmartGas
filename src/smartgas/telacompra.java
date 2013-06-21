@@ -36,7 +36,7 @@ public class telacompra extends javax.swing.JFrame {
      * Creates new form telacompra
      */
     public telacompra() {        
-        initComponents();
+        initComponents();        
     }
 
     /**
