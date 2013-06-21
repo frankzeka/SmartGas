@@ -65,6 +65,7 @@ public class telacompra extends javax.swing.JFrame {
         Cancelar = new javax.swing.JButton();
         jTextFieldTotal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setTitle("Tela de Compra");
         setName("formtelacompra"); // NOI18N
@@ -195,6 +196,10 @@ public class telacompra extends javax.swing.JFrame {
         jLabel5.setText("R$");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(310, 450, 20, 17);
+
+        jLabel6.setText("by Arildo");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(440, 500, 60, 17);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -362,6 +367,7 @@ public class telacompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldTotal;
