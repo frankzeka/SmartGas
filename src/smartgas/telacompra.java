@@ -273,7 +273,8 @@ public class telacompra extends javax.swing.JFrame {
         ficha_item.preco_custo = Float.parseFloat(entradaPreco.getText());
         ficha_item.quantidade =  Integer.parseInt(entradaquantidade.getValue().toString());
         fichas_itens.add(ficha_item);        
-        jTextFieldTotal.setText(Float.toString(totalcompra));        
+        jTextFieldTotal.setText(Float.toString(totalcompra));
+        entradaPreco.setText("");
     }//GEN-LAST:event_IncluirActionPerformed
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
