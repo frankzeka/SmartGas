@@ -296,7 +296,9 @@ public class telacompra extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+       if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Finalizar a Compra?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  
+       }
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
