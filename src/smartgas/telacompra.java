@@ -301,6 +301,9 @@ public class telacompra extends javax.swing.JFrame {
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
+         if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  
+            }  
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void entradaPrecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_entradaPrecoFocusLost
