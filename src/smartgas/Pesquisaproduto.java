@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Pesquisaproduto extends javax.swing.JFrame {
         Ok = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -77,10 +78,20 @@ public class Pesquisaproduto extends javax.swing.JFrame {
         });
 
         Ok.setText("Ok");
+        Ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OkActionPerformed(evt);
+            }
+        });
 
         Cancelar.setText("Cancelar");
+        Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CancelarMouseClicked(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,7 +99,7 @@ public class Pesquisaproduto extends javax.swing.JFrame {
                 "Quantidade", "Preço unitario", "Peso", "tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabela);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,21 +152,25 @@ public class Pesquisaproduto extends javax.swing.JFrame {
 
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
         // TODO add your handling code here:
-         boolean encontrou = false;//pra indicar se achou ou não
-         int total = fichario.size();//pra contar as fichas
+        boolean encontrou = false;//pra indicar se achou ou não
+        int total = fichario.size();//pra contar as fichas
+        DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
-           if(ficha.tipo.compareTo(EntradaTipo.getText())==0){
-               JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+          
+           if(ficha.tipo.startsWith(EntradaTipo.getText())){
+               
+                Object linha[] = { ficha.quantidade,ficha.precounitario, ficha.peso, ficha.tipo};
+                dtm.addRow(linha);
+               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
            }
-           JOptionPane.showMessageDialog(null, "tipo dentro do arquivo: "+ficha.tipo+" Tipo pesquisado: "+EntradaTipo.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+           //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
    
         }  
         if(!encontrou){
-            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-       }                                      
-            
+            JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
+       }      
         
     }//GEN-LAST:event_PesquisarMouseClicked
 
@@ -182,6 +197,20 @@ public class Pesquisaproduto extends javax.swing.JFrame {
     }
                                      
     }//GEN-LAST:event_formWindowOpened
+
+    private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
+        // TODO add your handling code here:
+              if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();         
+      }
+    }//GEN-LAST:event_CancelarMouseClicked
+
+    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
+        // TODO add your handling code here:
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_OkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,9 +252,9 @@ public class Pesquisaproduto extends javax.swing.JFrame {
     private javax.swing.JTextField EntradaTipo;
     private javax.swing.JButton Ok;
     private javax.swing.JButton Pesquisar;
+    private javax.swing.JTable Tabela;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel tipo;
     // End of variables declaration//GEN-END:variables
 

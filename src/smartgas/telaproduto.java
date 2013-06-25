@@ -218,7 +218,7 @@ private produto fichas;
 
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
         // TODO add your handling code here:    
-        new Pesquisaproduto().setVisible(true);
+          new Pesquisaproduto().setVisible(true);
     }//GEN-LAST:event_PesquisarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
