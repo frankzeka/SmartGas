@@ -19,8 +19,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author info52
  */
-public class Pesquisaproduto extends javax.swing.JFrame {
+public class Pesquisaproduto extends javax.swing.JDialog {
     ArrayList <produto> fichario = new ArrayList <produto>();
+    ArrayList<produto> achados = new ArrayList<produto>();
     produto ficha = new produto();
     int atual=0;
     int total=0;
@@ -30,6 +31,7 @@ public class Pesquisaproduto extends javax.swing.JFrame {
      */
     public Pesquisaproduto() {
         initComponents();
+        
     }
 
     /**
@@ -157,13 +159,15 @@ public class Pesquisaproduto extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
+           
           
            if(ficha.tipo.startsWith(EntradaTipo.getText())){
-               
+               achados.add(ficha);
                 Object linha[] = { ficha.quantidade,ficha.precounitario, ficha.peso, ficha.tipo};
                 dtm.addRow(linha);
                JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
+               
            }
            //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
    
@@ -207,15 +211,23 @@ public class Pesquisaproduto extends javax.swing.JFrame {
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
         // TODO add your handling code here:
-        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){
+        DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){            
+            retorna(achados.get(Tabela.getSelectedRow()));
             this.dispose();
+            
         }
     }//GEN-LAST:event_OkActionPerformed
 
+    public produto retorna(produto s){
+        return s;
+        
+    }
+        
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static produto main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -246,6 +258,7 @@ public class Pesquisaproduto extends javax.swing.JFrame {
                 new Pesquisaproduto().setVisible(true);
             }
         });
+        return null;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;

@@ -164,11 +164,6 @@ private produto fichas;
                 sairMouseClicked(evt);
             }
         });
-        sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -200,25 +195,13 @@ private produto fichas;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        if (atual>total){
-            
-            atual=total;
-        }else{
-            atual=atual++;
-   
-        }
-        EntradaTipo.setText(Integer.toString(ficha.quantidade));
-        entradapreçounitario.setText(Float.toString(ficha.precounitario));
-        entradapeso.setText(Integer.toString(ficha.peso));
-        entradaquantidade.setText(ficha.tipo);  
-    }//GEN-LAST:event_sairActionPerformed
-
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
-        // TODO add your handling code here:    
-          new Pesquisaproduto().setVisible(true);
+        // TODO add your handling code here:
+          produto encontrado = new produto();
+          Pesquisaproduto tela = new Pesquisaproduto();
+          tela.setVisible(true);
+          encontrado = tela.retorna(ficha);
+          EntradaTipo.setText(encontrado.tipo);
     }//GEN-LAST:event_PesquisarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
