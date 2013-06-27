@@ -7,10 +7,15 @@ package smartgas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +25,9 @@ public class telavenda extends javax.swing.JFrame {
 ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
     ArrayList <Funcionario> fichas_funcionario = new ArrayList<Funcionario>();
     ArrayList <produto> fichas_produto = new ArrayList<produto>();
+    ArrayList <venda> fichas_venda = new ArrayList<venda>();
+    venda ficha_venda = new venda();
+    float totalvenda = 0;
     /**
      * Creates new form telavenda
      */
@@ -44,12 +52,16 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
         entradaquantidade = new javax.swing.JTextField();
         entradavalorcompra = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        incluir = new javax.swing.JButton();
         ComboP = new javax.swing.JComboBox();
         itensvenda = new javax.swing.JScrollPane();
         tabelaitens = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         ComboC = new javax.swing.JComboBox();
+        finalizarvenda = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFieldTotal = new javax.swing.JTextField();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -59,25 +71,26 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
 
         jLabel1.setText("Funcionario:");
 
-        ComboF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboFActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setText("Produto:");
 
         jLabel3.setText("Quantidade:");
 
-        entradaquantidade.setText("0");
-
-        entradavalorcompra.setText("R$ 0,00");
+        entradavalorcompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                entradavalorcompraFocusLost(evt);
+            }
+        });
 
         jLabel4.setText("Valor de compra:");
 
-        jButton1.setText("Incluir");
+        incluir.setText("Incluir");
+        incluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -100,7 +113,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                     .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -110,7 +123,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(incluir))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,7 +133,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         tabelaitens.setModel(new javax.swing.table.DefaultTableModel(
@@ -143,19 +156,39 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
 
         jLabel5.setText("Cliente:");
 
-        ComboC.addActionListener(new java.awt.event.ActionListener() {
+        finalizarvenda.setText("Finalizar venda");
+        finalizarvenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComboCActionPerformed(evt);
+                finalizarvendaActionPerformed(evt);
             }
         });
+
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("R$");
+
+        jTextFieldTotal.setEditable(false);
+        jTextFieldTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(finalizarvenda)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelar)
+                .addGap(138, 138, 138))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(itensvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -166,11 +199,12 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                         .addComponent(ComboF, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(10, 104, Short.MAX_VALUE)
-                    .addComponent(itensvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 115, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,26 +219,23 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                     .addComponent(ComboC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 257, Short.MAX_VALUE)
-                    .addComponent(itensvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 27, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itensvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel6))
+                    .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(finalizarvenda)
+                    .addComponent(cancelar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ComboFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboFActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_ComboFActionPerformed
-
-    private void ComboCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboCActionPerformed
-        // TODO add your handling code here:
-         
-    }//GEN-LAST:event_ComboCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -249,7 +280,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
             fichas_produto = (ArrayList<produto>) arqEntrada.readObject();
             int totalP = fichas_produto.size();
             for (int x=0; x<totalP;x++){ //for
-                ComboP.addItem(fichas_produto.get(x).tipo);
+            ComboP.addItem(fichas_produto.get(x).tipo);
             }
         }
         catch(ClassNotFoundException e){
@@ -262,11 +293,54 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                    JOptionPane.showMessageDialog(null, "Erro na leitura dos dados produto", "SmartGas", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluirActionPerformed
+        // TODO add your handling code here:
+        Object linha[] = {ComboP.getSelectedItem(),entradaquantidade.getText(),entradavalorcompra.getText()};
+        DefaultTableModel dtm = (DefaultTableModel) tabelaitens.getModel();
+        dtm.addRow(linha);
+        entradaquantidade.setText("");
+        entradavalorcompra.setText("");
+    }//GEN-LAST:event_incluirActionPerformed
+
+    private void finalizarvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarvendaActionPerformed
+          venda ficha_venda = new venda();
+          ficha_venda.cod_cliente=ComboC.getSelectedItem().hashCode();
+          ficha_venda.cod_funcionario = 123;
+      
+          fichas_venda.add(ficha_venda);
+          try {
+            FileOutputStream  arquivo = new FileOutputStream("venda.ser");
+           try {
+                ObjectOutputStream salva = new  ObjectOutputStream (arquivo);
+                salva.writeObject(fichas_venda);
+                salva.close();
+            } catch (IOException ex) {
+                Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          this.dispose();
+               // TODO add your handling code here:
+    }//GEN-LAST:event_finalizarvendaActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+         if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  }
+    }//GEN-LAST:event_cancelarActionPerformed
+
+    private void entradavalorcompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_entradavalorcompraFocusLost
+        // TODO add your handling code here:
+        totalvenda = (Float.parseFloat(entradaquantidade.getText().toString()) * Float.parseFloat(entradavalorcompra.getText()))+totalvenda;
+        jTextFieldTotal.setText(Float.toString(totalvenda));
+    }//GEN-LAST:event_entradavalorcompraFocusLost
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /*
          * Set the Nimbus look and feel
          */
@@ -308,16 +382,20 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
     private javax.swing.JComboBox ComboC;
     private javax.swing.JComboBox ComboF;
     private javax.swing.JComboBox ComboP;
+    private javax.swing.JButton cancelar;
     private javax.swing.JTextField entradaquantidade;
     private javax.swing.JTextField entradavalorcompra;
+    private javax.swing.JButton finalizarvenda;
+    private javax.swing.JButton incluir;
     private javax.swing.JScrollPane itensvenda;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldTotal;
     private javax.swing.JTable tabelaitens;
     // End of variables declaration//GEN-END:variables
 }
