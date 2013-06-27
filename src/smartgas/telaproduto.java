@@ -16,11 +16,8 @@ import java.util.logging.Logger;
 public class telaproduto extends javax.swing.JFrame {
  produto ficha  = new produto();
 ArrayList<produto>  fichario = new ArrayList<produto>();
-int atual = 0;// controla a ficha atual
-int total =0;//conta o total de fichas criadas
-private produto fichas;
-
-
+produto encontrado = new produto();
+boolean altera = false;
     /**
      * Creates new form telaproduto
      */
@@ -196,12 +193,17 @@ private produto fichas;
     }// </editor-fold>//GEN-END:initComponents
 
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
-        // TODO add your handling code here:
-          produto encontrado = new produto();
-          Pesquisaproduto tela = new Pesquisaproduto();
+        // TODO add your handling code here:          
+          Pesquisaproduto tela = new Pesquisaproduto(new javax.swing.JFrame(), true);
           tela.setVisible(true);
-          encontrado = tela.retorna(ficha);
+          encontrado = tela.retorna();
+          if (encontrado != null){
           EntradaTipo.setText(encontrado.tipo);
+          entradapeso.setText(Integer.toString(encontrado.peso));
+          entradapreçounitario.setText(Float.toString(encontrado.precounitario));
+          entradaquantidade.setText(Integer.toString(encontrado.quantidade));
+          altera = true;
+          }
     }//GEN-LAST:event_PesquisarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -225,21 +227,19 @@ private produto fichas;
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
             }
-        total = fichario.size();
-        atual = total-1;
-        ficha = new produto();
-        ficha = fichario.get(atual);// pega a ficha atual do fichario  
-                
+               
         }
     
     }//GEN-LAST:event_formWindowOpened
 
     private void SalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalvarMouseClicked
         // TODO add your handling code here:
-        ficha  = new produto();       
+        
+        ficha  = new produto();
+                
         ficha.tipo = EntradaTipo.getText();
         ficha.peso = Integer.parseInt(entradapeso.getText());
-        ficha.precounitario = Integer.parseInt(entradapreçounitario.getText());
+        ficha.precounitario = Float.parseFloat(entradapreçounitario.getText());
         ficha.quantidade = Integer.parseInt(entradaquantidade.getText());
         //acabou a coleta de dados
         //Limpa os campos
@@ -247,13 +247,13 @@ private produto fichas;
         entradapeso.setText("");
         entradapreçounitario.setText("");
         entradaquantidade.setText("");
-        //limpando os campos
+        if (!altera){
+            fichario.add(ficha);
+        }else{
+            int id=fichario.indexOf(encontrado);
+            fichario.set(id, ficha);            
+        }           
         
-        //atualiza o contador
-        atual++;// faz a mesma coisa que atual=atual+1
-        //mostra em qual registro está(registro atual)
-
-        fichario.add(ficha);
         FileOutputStream filestream;
         try {
             filestream = new FileOutputStream("produto.ser");

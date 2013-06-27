@@ -23,13 +23,12 @@ public class Pesquisaproduto extends javax.swing.JDialog {
     ArrayList <produto> fichario = new ArrayList <produto>();
     ArrayList<produto> achados = new ArrayList<produto>();
     produto ficha = new produto();
-    int atual=0;
-    int total=0;
 
     /**
      * Creates new form PesquisaProduto
      */
-    public Pesquisaproduto() {
+    public Pesquisaproduto(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         
     }
@@ -79,14 +78,14 @@ public class Pesquisaproduto extends javax.swing.JDialog {
             }
         });
 
-        Ok.setText("Ok");
+        Ok.setText("Alterar");
         Ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkActionPerformed(evt);
             }
         });
 
-        Cancelar.setText("Cancelar");
+        Cancelar.setText("Ok");
         Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CancelarMouseClicked(evt);
@@ -122,8 +121,8 @@ public class Pesquisaproduto extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Cancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -213,14 +212,13 @@ public class Pesquisaproduto extends javax.swing.JDialog {
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){            
-            retorna(achados.get(Tabela.getSelectedRow()));
+            retorna();
             this.dispose();
-            
         }
     }//GEN-LAST:event_OkActionPerformed
 
-    public produto retorna(produto s){
-        return s;
+    public produto retorna(){
+        return achados.get(Tabela.getSelectedRow());   
         
     }
         
@@ -255,7 +253,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pesquisaproduto().setVisible(true);
+                new Pesquisaproduto(new javax.swing.JFrame(), true).setVisible(true);
             }
         });
         return null;
