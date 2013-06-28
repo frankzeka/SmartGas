@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Telafornecedor extends javax.swing.JFrame {
 fornecedor ficha  = new fornecedor();
 ArrayList<fornecedor>  fichario = new ArrayList<fornecedor>();
-fornecedor encontrado = new fornecedor();
+int encontrado =-1;
 boolean altera = false;
  
 
@@ -234,8 +234,12 @@ boolean altera = false;
         //atualiza o contador
         //atual++;// faz a mesma coisa que atual=atual+1
         //mostra em qual registro está(registro atual)
-
-        fichario.add(ficha);
+        if (!altera){
+            fichario.add(ficha);
+        }else{
+            fichario.set(encontrado,ficha);
+        }
+        
         FileOutputStream filestream;
         try {
             filestream = new FileOutputStream("fornecedor.ser");
@@ -283,13 +287,14 @@ boolean altera = false;
         PesquisaFornecedor tela = new PesquisaFornecedor(new javax.swing.JFrame(), true);
           tela.setVisible(true);
           encontrado = tela.retorna();
-          if (encontrado != null){
-          entradanome.setText(encontrado.nome);   
-          entradaendereco.setText(encontrado.endereco);
-          entradacnpj.setText (Integer.toString(encontrado.cnpj));
-          entradacidade.setText(encontrado.cidade);
-           entradatelefone.setText (Integer.toString(encontrado.telefone));
-           altera = true;
+          if (encontrado != -1){
+          ficha = fichario.get(encontrado);
+          entradanome.setText(ficha.nome);   
+          entradaendereco.setText(ficha.endereco);
+          entradacnpj.setText (Integer.toString(ficha.cnpj));
+          entradacidade.setText(ficha.cidade);
+          entradatelefone.setText (Integer.toString(ficha.telefone));
+          altera = true;
           }       
          
        

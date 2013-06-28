@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class PesquisaFornecedor extends javax.swing.JDialog {
 fornecedor ficha  = new fornecedor();
 ArrayList<fornecedor>  fichario = new ArrayList<fornecedor>();
-ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
+ArrayList<Integer> achados =  new ArrayList <Integer>();
 
 
    
@@ -169,10 +169,10 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
            if(ficha.nome.startsWith(EntradaNome.getText())){
-           achados.add(ficha);
+           achados.add(x);
                 Object linha[] = {ficha.hashCode(), ficha.nome, ficha.cnpj};
                 dtm.addRow(linha);
-               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+               
                encontrou = true;
            }
           // JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
@@ -180,7 +180,9 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
         }  
         if(!encontrou){
             JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-       }
+       }else{
+            JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_PesquisarActionPerformed
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
@@ -191,7 +193,7 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
              }  
           
     }//GEN-LAST:event_OkActionPerformed
-            public fornecedor retorna(){
+     public Integer retorna(){
             return achados.get(jTable1.getSelectedRow());
      }  
     /**
