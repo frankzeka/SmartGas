@@ -56,6 +56,7 @@ boolean altera = false;
         pesquisar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -97,7 +98,7 @@ boolean altera = false;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(entradacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addComponent(entradacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,6 +164,13 @@ boolean altera = false;
 
         jLabel5.setText("By almir");
 
+        jButton1.setText("Novo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novo(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -174,7 +182,9 @@ boolean altera = false;
                 .addComponent(pesquisar)
                 .addGap(28, 28, 28)
                 .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
@@ -187,7 +197,8 @@ boolean altera = false;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salvar)
                     .addComponent(pesquisar)
-                    .addComponent(sair))
+                    .addComponent(sair)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel5))
         );
@@ -309,6 +320,15 @@ boolean altera = false;
        
     }//GEN-LAST:event_sairActionPerformed
 
+    private void novo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novo
+        // TODO add your handling code here:
+     entradanome.setText("");
+        entradaendereco.setText("");
+        entradatelefone.setText("");
+        entradacidade.setText("");
+        entradacnpj.setText("");   
+    }//GEN-LAST:event_novo
+
     /**
      * @param args the command line arguments
      */
@@ -357,6 +377,7 @@ boolean altera = false;
     private javax.swing.JTextField entradaendereco;
     private javax.swing.JTextField entradanome;
     private javax.swing.JTextField entradatelefone;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
