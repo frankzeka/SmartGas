@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class telacliente extends javax.swing.JFrame {
 cliente ficha  = new cliente();
 ArrayList<cliente>  fichario = new ArrayList<cliente>();
-cliente encontrado = new cliente();
+int encontrado =-1;
 boolean altera = false;
     /**
      * Creates new form telacliente
@@ -54,6 +54,7 @@ boolean altera = false;
         Salva = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
         Sair = new javax.swing.JButton();
+        Novo = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -104,12 +105,12 @@ boolean altera = false;
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(EntradaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(EntradaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(EntradaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(EntradaNome))
                 .addContainerGap())
@@ -158,9 +159,9 @@ boolean altera = false;
         });
 
         Sair.setText("Sair");
-        Sair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SairMouseClicked(evt);
+        Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SairActionPerformed(evt);
             }
         });
 
@@ -187,50 +188,56 @@ boolean altera = false;
                 .addGap(25, 25, 25))
         );
 
+        Novo.setText("Novo");
+        Novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Novo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(Novo)))
                 .addGap(56, 56, 56))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
-        // TODO add your handling code here:
-       if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
-                this.dispose();  
-            }  
-          
-       
-                                    
-        
-    }//GEN-LAST:event_SairMouseClicked
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-       File testa = new File("cliente.ser"); 
-     if (testa.exists()){
+       File teste = new File("cliente.ser"); 
+     if (teste.exists()){
             try {
                 FileInputStream arquivo = new FileInputStream("cliente.ser");
                 try {
                     ObjectInputStream fluxo = new ObjectInputStream (arquivo);
                     try {
                      Object objeto = fluxo.readObject();
-                     fichario = (ArrayList<cliente>) objeto ;                     
+                     fichario = (ArrayList<cliente>) objeto ;
+                                                         
+
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -239,10 +246,10 @@ boolean altera = false;
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
-            
-     }    
-    }               
-        
+           
+     }
+         
+    }       
     }//GEN-LAST:event_formWindowOpened
 
     private void SalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvaActionPerformed
@@ -259,10 +266,17 @@ boolean altera = false;
         ficha.CPF=Integer.parseInt(EntradaCPF.getText());
          EntradaCPF.setText("");
         ficha.email=EntradaEmail.getText();
-         EntradaEmail.setText("");
+         EntradaEmail.setText(" ");
          ficha.cep=Integer.parseInt(EntradaCep.getText());
          EntradaCep.setText("");
+         if (!altera){
          fichario.add(ficha);
+         }else{
+             fichario.set(encontrado, ficha);
+         }
+         
+         
+         
          try {
             FileOutputStream arquivo = new FileOutputStream ("cliente.ser");
             try {
@@ -283,17 +297,36 @@ boolean altera = false;
           PesquisaCliente tela = new PesquisaCliente(new javax.swing.JFrame(), true);
           tela.setVisible(true);
           encontrado = tela.retorna();
-          if (encontrado != null){
-          EntradaNome.setText(encontrado.nome);
-          EntradaEndereco.setText(encontrado.endereco);
-          EntradaTelefone.setText(Integer.toString(encontrado.telefone));
-          EntradaCPF.setText(Integer.toString(encontrado.CPF));
-          EntradaEmail.setText(encontrado.email);
-          EntradaCep.setText(Integer.toString(encontrado.cep));
-          EntradaCidade.setText(encontrado.cidade);
+          if (encontrado!= -1){
+              ficha = fichario.get(encontrado);
+          EntradaNome.setText(ficha.nome);
+          EntradaEndereco.setText(ficha.endereco);
+          EntradaTelefone.setText(Integer.toString(ficha.telefone));
+          EntradaCPF.setText(Integer.toString(ficha.CPF));
+          EntradaEmail.setText(ficha.email);
+          EntradaCep.setText(Integer.toString(ficha.cep));
+          EntradaCidade.setText(ficha.cidade);
           altera = true;
           }
     }//GEN-LAST:event_PesquisarActionPerformed
+
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+        // TODO add your handling code here:
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  
+            }  
+    }//GEN-LAST:event_SairActionPerformed
+
+    private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
+        // TODO add your handling code here:
+        EntradaNome.setText("");   
+        EntradaEndereco.setText("");
+        EntradaTelefone.setText("");
+        EntradaCPF.setText("");
+        EntradaEmail.setText("");
+        EntradaCep.setText("");
+        EntradaCidade.setText("");
+    }//GEN-LAST:event_NovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +378,7 @@ boolean altera = false;
     private javax.swing.JTextField EntradaEndereco;
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JTextField EntradaTelefone;
+    private javax.swing.JButton Novo;
     private javax.swing.JButton Pesquisar;
     private javax.swing.JButton Sair;
     private javax.swing.JButton Salva;

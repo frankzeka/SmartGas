@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 public class PesquisaCliente extends javax.swing.JDialog {
     cliente ficha  = new cliente();
     ArrayList<cliente>  fichario = new ArrayList<cliente>();
-    ArrayList<cliente>  achados = new ArrayList<cliente>();
+    ArrayList<Integer>  achados = new ArrayList<Integer>();
        
   
     /**
@@ -54,6 +54,7 @@ public class PesquisaCliente extends javax.swing.JDialog {
         aluno = new javax.swing.JLabel();
         alterar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        Novo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -105,6 +106,13 @@ public class PesquisaCliente extends javax.swing.JDialog {
             }
         });
 
+        Novo.setText("Novo");
+        Novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,10 +135,12 @@ public class PesquisaCliente extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addComponent(cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(Novo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aluno)
                 .addGap(53, 53, 53))
         );
@@ -143,13 +153,14 @@ public class PesquisaCliente extends javax.swing.JDialog {
                     .addComponent(EntradaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Pesquisar)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aluno)
                     .addComponent(alterar)
-                    .addComponent(cancelar))
+                    .addComponent(cancelar)
+                    .addComponent(Novo))
                 .addGap(28, 28, 28))
         );
 
@@ -197,10 +208,10 @@ public class PesquisaCliente extends javax.swing.JDialog {
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
-           aluno.setText(ficha.nome);
            if(ficha.nome.startsWith(EntradaNome.getText())){
+               achados.add(x);
                
-                Object linha[] = { ficha.nome,ficha.endereco, ficha.CPF};
+                Object linha[] = {ficha.nome, ficha.endereco, ficha.CPF};
                 dtm.addRow(linha);
                JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
@@ -210,7 +221,9 @@ public class PesquisaCliente extends javax.swing.JDialog {
         }  
         if(!encontrou){
             JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-       }
+        }else{
+       JOptionPane.showMessageDialog(null, "encontrado com sucesso.", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_PesquisarActionPerformed
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
@@ -228,8 +241,13 @@ public class PesquisaCliente extends javax.swing.JDialog {
             this.dispose();
         }  
     }//GEN-LAST:event_alterarActionPerformed
+
+    private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
+        // TODO add your handling code here:
+        EntradaNome.setText("");  
+    }//GEN-LAST:event_NovoActionPerformed
    
-    public cliente retorna(){
+    public Integer retorna(){
         return achados.get(Tabela.getSelectedRow());
         
     }
@@ -269,6 +287,7 @@ public class PesquisaCliente extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaNome;
+    private javax.swing.JButton Novo;
     private javax.swing.JButton Pesquisar;
     private javax.swing.JTable Tabela;
     private javax.swing.JButton alterar;
