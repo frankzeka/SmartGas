@@ -250,8 +250,11 @@ boolean altera = false;
         if (!altera){
             fichario.add(ficha);
         }else{
-            int id=fichario.indexOf(encontrado);
-            fichario.set(id, ficha);            
+            //int id=fichario.;
+            //jLabel1.setText(toString(fichario.contains(encontrado)));
+           // fichario.set(id, ficha);
+            
+          
         }           
         
         FileOutputStream filestream;

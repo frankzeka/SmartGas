@@ -17,8 +17,9 @@ import java.util.logging.Logger;
 public class Telafornecedor extends javax.swing.JFrame {
 fornecedor ficha  = new fornecedor();
 ArrayList<fornecedor>  fichario = new ArrayList<fornecedor>();
-int atual = 0;// controla a ficha atual
-int total =0;//conta o total de fichas criadas
+fornecedor encontrado = new fornecedor();
+boolean altera = false;
+ 
 
     /**
      * Creates new form telafornecedor
@@ -154,11 +155,6 @@ int total =0;//conta o total de fichas criadas
         });
 
         sair.setText("Sair");
-        sair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sairMouseClicked(evt);
-            }
-        });
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
@@ -267,8 +263,7 @@ int total =0;//conta o total de fichas criadas
                     try {
                      Object objeto = fluxo.readObject();
                      fichario = (ArrayList<fornecedor>) objeto ;
-                     total = fichario.size();
-                     atual = total;                                      
+                                                         
 
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -283,27 +278,21 @@ int total =0;//conta o total de fichas criadas
          
     }//GEN-LAST:event_formWindowOpened
 
-    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
-        // TODO add your handling code here:
-        if  (atual >=total-1){
-            atual = total-1 ;
-        } 
-        else {
-            atual++;
-        }
-
-        ficha = fichario.get(atual);        
-        entradanome.setText(ficha.nome);
-        entradaendereco.setText(ficha.endereco);
-        entradatelefone.setText(Integer.toString(ficha.telefone));
-        entradacidade.setText(ficha.cidade);
-        entradacnpj.setText(Integer.toString(ficha.cnpj));
-        
-    }//GEN-LAST:event_sairMouseClicked
-
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         // TODO add your handling code here:
-        new PesquisaFornecedor().setVisible(true);
+        PesquisaFornecedor tela = new PesquisaFornecedor(new javax.swing.JFrame(), true);
+          tela.setVisible(true);
+          encontrado = tela.retorna();
+          if (encontrado != null){
+          entradanome.setText(encontrado.nome);   
+          entradaendereco.setText(encontrado.endereco);
+          entradacnpj.setText (Integer.toString(encontrado.cnpj));
+          entradacidade.setText(encontrado.cidade);
+           entradatelefone.setText (Integer.toString(encontrado.telefone));
+           altera = true;
+          }       
+         
+       
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed

@@ -121,8 +121,8 @@ public class Pesquisaproduto extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addComponent(Cancelar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -211,7 +211,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
-        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){            
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Alterar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){            
             retorna();
             this.dispose();
         }
