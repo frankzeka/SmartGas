@@ -15,11 +15,10 @@ import java.util.logging.Logger;
  * @author Administrador
  */
 public class telacliente extends javax.swing.JFrame {
-ArrayList<cliente>  fichario = new ArrayList <cliente>();
-cliente ficha =  new cliente();
-int atual = 0;
-int total =0;
-
+cliente ficha  = new cliente();
+ArrayList<cliente>  fichario = new ArrayList<cliente>();
+cliente encontrado = new cliente();
+boolean altera = false;
     /**
      * Creates new form telacliente
      */
@@ -66,23 +65,11 @@ int total =0;
 
         jLabel2.setText("Endereço :");
 
-        EntradaEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EntradaEnderecoActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Telefone :");
 
         jLabel4.setText("Cidade :");
 
         jLabel5.setText("C.P.F :");
-
-        EntradaCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EntradaCPFActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("E-mail :");
 
@@ -235,20 +222,32 @@ int total =0;
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-      
+       File testa = new File("cliente.ser"); 
+     if (testa.exists()){
+            try {
+                FileInputStream arquivo = new FileInputStream("cliente.ser");
+                try {
+                    ObjectInputStream fluxo = new ObjectInputStream (arquivo);
+                    try {
+                     Object objeto = fluxo.readObject();
+                     fichario = (ArrayList<cliente>) objeto ;                     
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            
+     }    
+    }               
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void EntradaEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EntradaEnderecoActionPerformed
-
-    private void EntradaCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradaCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EntradaCPFActionPerformed
-
     private void SalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvaActionPerformed
-        // TODO add your handling code here:
+
+         // TODO add your handling code here:
         ficha.nome=EntradaNome.getText();
          EntradaNome.setText("");
         ficha.endereco=EntradaEndereco.getText();
@@ -281,7 +280,19 @@ int total =0;
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
         // TODO add your handling code here:
-        new PesquisaCliente().setVisible(true);
+          PesquisaCliente tela = new PesquisaCliente(new javax.swing.JFrame(), true);
+          tela.setVisible(true);
+          encontrado = tela.retorna();
+          if (encontrado != null){
+          EntradaNome.setText(encontrado.nome);
+          EntradaEndereco.setText(encontrado.endereco);
+          EntradaTelefone.setText(Integer.toString(encontrado.telefone));
+          EntradaCPF.setText(Integer.toString(encontrado.CPF));
+          EntradaEmail.setText(encontrado.email);
+          EntradaCep.setText(Integer.toString(encontrado.cep));
+          EntradaCidade.setText(encontrado.cidade);
+          altera = true;
+          }
     }//GEN-LAST:event_PesquisarActionPerformed
 
     /**
