@@ -211,7 +211,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
-        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){            
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Alterar?","TENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){            
             retorna();
             this.dispose();
         }
