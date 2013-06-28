@@ -50,6 +50,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
         Cancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
+        novo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,6 +103,13 @@ public class Pesquisaproduto extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(Tabela);
 
+        novo.setText("Novo");
+        novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,7 +131,9 @@ public class Pesquisaproduto extends javax.swing.JDialog {
                         .addGap(26, 26, 26)
                         .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
-                        .addComponent(Cancelar))
+                        .addComponent(Cancelar)
+                        .addGap(33, 33, 33)
+                        .addComponent(novo))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -144,7 +154,8 @@ public class Pesquisaproduto extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ok)
-                    .addComponent(Cancelar))
+                    .addComponent(Cancelar)
+                    .addComponent(novo))
                 .addGap(51, 51, 51))
         );
 
@@ -217,6 +228,12 @@ public class Pesquisaproduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_OkActionPerformed
 
+    private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
+
+         EntradaTipo.setText("");
+       
+    }//GEN-LAST:event_novoActionPerformed
+
     public Integer retorna(){
         return achados.get(Tabela.getSelectedRow());   
         
@@ -266,6 +283,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
     private javax.swing.JTable Tabela;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton novo;
     private javax.swing.JLabel tipo;
     // End of variables declaration//GEN-END:variables
 

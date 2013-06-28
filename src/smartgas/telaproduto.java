@@ -49,6 +49,7 @@ boolean altera = false;
         Salvar = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
+        novo = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -162,6 +163,13 @@ boolean altera = false;
             }
         });
 
+        novo.setText("Novo");
+        novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -171,7 +179,9 @@ boolean altera = false;
                 .addComponent(Salvar)
                 .addGap(43, 43, 43)
                 .addComponent(Pesquisar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(novo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(sair)
                 .addGap(56, 56, 56))
         );
@@ -182,7 +192,8 @@ boolean altera = false;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salvar)
                     .addComponent(Pesquisar)
-                    .addComponent(sair))
+                    .addComponent(sair)
+                    .addComponent(novo))
                 .addGap(59, 59, 59))
         );
 
@@ -276,6 +287,14 @@ boolean altera = false;
       }
     }//GEN-LAST:event_sairMouseClicked
 
+    private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
+        // TODO add your handling code here:
+        EntradaTipo.setText("");
+        entradapeso.setText("");
+        entradapreçounitario.setText("");
+        entradaquantidade.setText("");
+    }//GEN-LAST:event_novoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -332,6 +351,7 @@ boolean altera = false;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton novo;
     private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
 }
