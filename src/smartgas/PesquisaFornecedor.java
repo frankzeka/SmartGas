@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class PesquisaFornecedor extends javax.swing.JDialog {
 fornecedor ficha  = new fornecedor();
 ArrayList<fornecedor>  fichario = new ArrayList<fornecedor>();
-ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
+ArrayList<Integer> achados =  new ArrayList <Integer>();
 
 
    
@@ -50,6 +50,7 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
         jTable1 = new javax.swing.JTable();
         Ok = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        novo = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -95,6 +96,13 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
 
         jTextField1.setText("by almir");
 
+        novo.setText("NOVO");
+        novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,11 +116,13 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(novo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -130,7 +140,8 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ok)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(novo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -169,10 +180,10 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
            if(ficha.nome.startsWith(EntradaNome.getText())){
-           achados.add(ficha);
+           achados.add(x);
                 Object linha[] = {ficha.hashCode(), ficha.nome, ficha.cnpj};
                 dtm.addRow(linha);
-               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+               
                encontrou = true;
            }
           // JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
@@ -180,7 +191,9 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
         }  
         if(!encontrou){
             JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-       }
+       }else{
+            JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_PesquisarActionPerformed
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
@@ -191,7 +204,13 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
              }  
           
     }//GEN-LAST:event_OkActionPerformed
-            public fornecedor retorna(){
+
+    private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
+        // TODO add your handling code here:
+        EntradaNome.setText("");
+        
+    }//GEN-LAST:event_novoActionPerformed
+     public Integer retorna(){
             return achados.get(jTable1.getSelectedRow());
      }  
     /**
@@ -238,5 +257,6 @@ ArrayList<fornecedor> achados =  new ArrayList <fornecedor>();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton novo;
     // End of variables declaration//GEN-END:variables
 }
