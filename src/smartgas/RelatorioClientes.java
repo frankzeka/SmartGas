@@ -109,7 +109,7 @@ public class RelatorioClientes {
             // abrindo o arquivo pelo sistema
              
             try {
-                File pdf = new File("estoque.pdf");
+                File pdf = new File("cliente.pdf");
                 Desktop.getDesktop().open(pdf);
             } catch(Exception ex) {
                 ex.printStackTrace();
