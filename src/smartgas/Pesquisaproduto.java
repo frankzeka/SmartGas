@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Pesquisaproduto extends javax.swing.JDialog {
     ArrayList <produto> fichario = new ArrayList <produto>();
-    ArrayList<produto> achados = new ArrayList<produto>();
+    ArrayList<Integer> achados = new ArrayList<Integer>();
     produto ficha = new produto();
 
     /**
@@ -161,7 +161,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
            
           
            if(ficha.tipo.startsWith(EntradaTipo.getText())){
-               achados.add(ficha);
+               achados.add(x);
                 Object linha[] = { ficha.quantidade,ficha.precounitario, ficha.peso, ficha.tipo};
                 dtm.addRow(linha);
                JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
@@ -217,7 +217,7 @@ public class Pesquisaproduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_OkActionPerformed
 
-    public produto retorna(){
+    public Integer retorna(){
         return achados.get(Tabela.getSelectedRow());   
         
     }
