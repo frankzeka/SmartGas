@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class telaproduto extends javax.swing.JFrame {
  produto ficha  = new produto();
 ArrayList<produto>  fichario = new ArrayList<produto>();
-produto encontrado = new produto();
+int encontrado =-1;
 boolean altera = false;
     /**
      * Creates new form telaproduto
@@ -197,12 +197,13 @@ boolean altera = false;
           Pesquisaproduto tela = new Pesquisaproduto(new javax.swing.JFrame(), true);
           tela.setVisible(true);
           encontrado = tela.retorna();
-          if (encontrado != null){
-          EntradaTipo.setText(encontrado.tipo);
-          entradapeso.setText(Integer.toString(encontrado.peso));
-          entradapreçounitario.setText(Float.toString(encontrado.precounitario));
-          entradaquantidade.setText(Integer.toString(encontrado.quantidade));
-          altera = true;
+          if (encontrado != -1){
+              ficha = fichario.get(encontrado);
+              EntradaTipo.setText(ficha.tipo);
+              entradapeso.setText(Integer.toString(ficha.peso));
+              entradapreçounitario.setText(Float.toString(ficha.precounitario));
+              entradaquantidade.setText(Integer.toString(ficha.quantidade));              
+              altera = true;
           }
     }//GEN-LAST:event_PesquisarMouseClicked
 
@@ -249,12 +250,8 @@ boolean altera = false;
         entradaquantidade.setText("");
         if (!altera){
             fichario.add(ficha);
-        }else{
-            //int id=fichario.;
-            //jLabel1.setText(toString(fichario.contains(encontrado)));
-           // fichario.set(id, ficha);
-            
-          
+        }else{            
+           fichario.set(encontrado, ficha);
         }           
         
         FileOutputStream filestream;
