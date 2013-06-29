@@ -13,10 +13,10 @@ import java.io.Serializable;
 public class cliente implements Serializable {
     String nome;
     String endereco;
-    int telefone;
+    String telefone;
     String cidade;
-    int CPF;
+    Long CPF;
     String email;
-    int cep;
+    String cep;
     
 }
