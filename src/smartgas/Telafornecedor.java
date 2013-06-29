@@ -231,7 +231,7 @@ boolean altera = false;
         ficha.endereco = entradaendereco.getText();
         ficha.telefone = Integer.parseInt(entradatelefone.getText());
         ficha.cidade = entradacidade.getText();
-        ficha.cnpj = Integer.parseInt(entradacnpj.getText());
+        ficha.cnpj=(int) Long.parseLong(entradacnpj.getText());
         //acabou a coleta de dados
         //Limpa os campos
         entradanome.setText("");
@@ -302,7 +302,7 @@ boolean altera = false;
           ficha = fichario.get(encontrado);
           entradanome.setText(ficha.nome);   
           entradaendereco.setText(ficha.endereco);
-          entradacnpj.setText (Integer.toString(ficha.cnpj));
+          entradacnpj.setText(Long.toString(ficha.cnpj));
           entradacidade.setText(ficha.cidade);
           entradatelefone.setText (Integer.toString(ficha.telefone));
           altera = true;

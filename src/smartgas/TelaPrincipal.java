@@ -4,6 +4,9 @@
  */
 package smartgas;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
@@ -40,7 +43,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastroCliente = new javax.swing.JButton();
         painelrelatorio = new javax.swing.JPanel();
         relatorioestoque = new javax.swing.JButton();
-        relatoriovenda = new javax.swing.JButton();
+        relatorioclientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -145,32 +148,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         painelrelatorio.add(relatorioestoque);
 
-        relatoriovenda.setText("relatorio venda");
-        relatoriovenda.setAlignmentX(0.6F);
-        painelrelatorio.add(relatoriovenda);
+        relatorioclientes.setText("relatorio clientes");
+        relatorioclientes.setAlignmentX(0.6F);
+        relatorioclientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioclientesActionPerformed(evt);
+            }
+        });
+        painelrelatorio.add(relatorioclientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(painelprincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(painelcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(painelrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addComponent(painelrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 189, Short.MAX_VALUE)
+                .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(painelrelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(painelcadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-                .addGap(271, 271, 271))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(painelrelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(painelcadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(painelprincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                        .addGap(271, 271, 271))))
         );
 
         pack();
@@ -244,8 +256,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_relatoriosMouseClicked
 
     private void relatorioestoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioestoqueActionPerformed
-        // TODO add your handling code here:
+        try{
+            new RelatorioEstoques().executa();
+        }catch(Exception e){
+            System.err.println(" Nao deu");
+        }
     }//GEN-LAST:event_relatorioestoqueActionPerformed
+
+    private void relatorioclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioclientesActionPerformed
+        // TODO add your handling code here:
+        try{
+            new RelatorioClientes().executa();
+        }catch(Exception e){
+            System.err.println(" Nao deu");
+        }
+    }//GEN-LAST:event_relatorioclientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,8 +324,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel painelcadastro;
     private javax.swing.JPanel painelprincipal;
     private javax.swing.JPanel painelrelatorio;
+    private javax.swing.JButton relatorioclientes;
     private javax.swing.JButton relatorioestoque;
     private javax.swing.JButton relatorios;
-    private javax.swing.JButton relatoriovenda;
     // End of variables declaration//GEN-END:variables
 }

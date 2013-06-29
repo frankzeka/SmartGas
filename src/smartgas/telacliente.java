@@ -45,11 +45,11 @@ boolean altera = false;
         jLabel4 = new javax.swing.JLabel();
         EntradaCidade = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        EntradaCPF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         EntradaEmail = new javax.swing.JTextField();
         entradacep = new javax.swing.JLabel();
         EntradaCep = new javax.swing.JTextField();
+        EntradaCPF = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         Salva = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
@@ -75,6 +75,8 @@ boolean altera = false;
         jLabel6.setText("E-mail :");
 
         entradacep.setText("Cep :");
+
+        EntradaCPF.setColumns(11);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,8 +112,8 @@ boolean altera = false;
                         .addComponent(EntradaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EntradaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(EntradaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(EntradaNome))
                 .addContainerGap())
         );
@@ -122,13 +124,14 @@ boolean altera = false;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(EntradaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(EntradaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(EntradaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(EntradaEndereco)
+                        .addComponent(jLabel5))
+                    .addComponent(EntradaCPF))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -173,8 +176,8 @@ boolean altera = false;
                 .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(Salva, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
+                .addComponent(Pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -205,8 +208,8 @@ boolean altera = false;
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Novo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addComponent(Novo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,32 +255,66 @@ boolean altera = false;
     }       
     }//GEN-LAST:event_formWindowOpened
 
+    private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
+        // TODO add your handling code here:
+        EntradaNome.setText("");   
+        EntradaEndereco.setText("");
+        EntradaTelefone.setText("");
+        EntradaCPF.setText("");
+        EntradaEmail.setText("");
+        EntradaCep.setText("");
+        EntradaCidade.setText("");
+    }//GEN-LAST:event_NovoActionPerformed
+
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+        // TODO add your handling code here:
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção",javax.swing.JOptionPane.YES_NO_OPTION )==0){
+            this.dispose();
+        }
+    }//GEN-LAST:event_SairActionPerformed
+
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        // TODO add your handling code here:
+        PesquisaCliente tela = new PesquisaCliente(new javax.swing.JFrame(), true);
+        tela.setVisible(true);
+        encontrado = tela.retorna();
+        if (encontrado!= -1){
+            ficha = fichario.get(encontrado);
+            EntradaNome.setText(ficha.nome);
+            EntradaEndereco.setText(ficha.endereco);
+            EntradaTelefone.setText(ficha.telefone);
+            EntradaCPF.setText(Long.toString(ficha.CPF));
+            EntradaEmail.setText(ficha.email);
+            EntradaCep.setText(ficha.cep);
+            EntradaCidade.setText(ficha.cidade);
+            altera = true;
+        }
+    }//GEN-LAST:event_PesquisarActionPerformed
+
     private void SalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvaActionPerformed
 
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         ficha.nome=EntradaNome.getText();
-         EntradaNome.setText("");
+        EntradaNome.setText("");
         ficha.endereco=EntradaEndereco.getText();
-         EntradaEndereco.setText("");
-        ficha.telefone=Integer.parseInt(EntradaTelefone.getText());
-         EntradaTelefone.setText("");
+        EntradaEndereco.setText("");
+        ficha.telefone=EntradaTelefone.getText();
+        EntradaTelefone.setText("");
         ficha.cidade=EntradaCidade.getText();
-         EntradaCidade.setText("");
-        ficha.CPF=Integer.parseInt(EntradaCPF.getText());
-         EntradaCPF.setText("");
+        EntradaCidade.setText("");
+        ficha.CPF=Long.parseLong(EntradaCPF.getText());
+        EntradaCPF.setText("");
         ficha.email=EntradaEmail.getText();
-         EntradaEmail.setText(" ");
-         ficha.cep=Integer.parseInt(EntradaCep.getText());
-         EntradaCep.setText("");
-         if (!altera){
-         fichario.add(ficha);
-         }else{
-             fichario.set(encontrado, ficha);
-         }
-         
-         
-         
-         try {
+        EntradaEmail.setText("");
+        ficha.cep=EntradaCep.getText();
+        EntradaCep.setText("");
+        if (!altera){
+            fichario.add(ficha);
+        }else{
+            fichario.set(encontrado, ficha);
+        }
+
+        try {
             FileOutputStream arquivo = new FileOutputStream ("cliente.ser");
             try {
                 ObjectOutputStream salva = new ObjectOutputStream(arquivo);
@@ -289,44 +326,8 @@ boolean altera = false;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_SalvaActionPerformed
-
-    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
-        // TODO add your handling code here:
-          PesquisaCliente tela = new PesquisaCliente(new javax.swing.JFrame(), true);
-          tela.setVisible(true);
-          encontrado = tela.retorna();
-          if (encontrado!= -1){
-              ficha = fichario.get(encontrado);
-          EntradaNome.setText(ficha.nome);
-          EntradaEndereco.setText(ficha.endereco);
-          EntradaTelefone.setText(Integer.toString(ficha.telefone));
-          EntradaCPF.setText(Integer.toString(ficha.CPF));
-          EntradaEmail.setText(ficha.email);
-          EntradaCep.setText(Integer.toString(ficha.cep));
-          EntradaCidade.setText(ficha.cidade);
-          altera = true;
-          }
-    }//GEN-LAST:event_PesquisarActionPerformed
-
-    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
-        // TODO add your handling code here:
-        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
-                this.dispose();  
-            }  
-    }//GEN-LAST:event_SairActionPerformed
-
-    private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
-        // TODO add your handling code here:
-        EntradaNome.setText("");   
-        EntradaEndereco.setText("");
-        EntradaTelefone.setText("");
-        EntradaCPF.setText("");
-        EntradaEmail.setText("");
-        EntradaCep.setText("");
-        EntradaCidade.setText("");
-    }//GEN-LAST:event_NovoActionPerformed
 
     /**
      * @param args the command line arguments
