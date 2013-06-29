@@ -16,9 +16,8 @@ String endereco;
 String telefone;
 String cidade;
 String email;
-int CPF;
+Long CPF;
 Float salario;
-int cargahoraria;
-int comissao;
+
 
 }

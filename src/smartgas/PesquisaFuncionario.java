@@ -19,16 +19,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author frank
  */
-public class PesquisaFuncionario extends javax.swing.JFrame {
-    ArrayList <Funcionario> fichario = new ArrayList <Funcionario>();
-    Funcionario ficha = new Funcionario();
-    int atual=0;
-    int total=0;
+public class PesquisaFuncionario extends javax.swing.JDialog {
+    Funcionario ficha  = new Funcionario();
+    ArrayList<Funcionario>  fichario = new ArrayList<Funcionario>();
+    ArrayList<Integer> achados =  new ArrayList <Integer>();
    
     /**
      * Creates new form PesquisaFuncionario
      */
-    public PesquisaFuncionario() {
+    public PesquisaFuncionario(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -47,7 +47,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         pesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
-        Ok = new javax.swing.JButton();
+        alterar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -78,15 +78,15 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabela);
 
-        Ok.setText("OK");
-        Ok.addMouseListener(new java.awt.event.MouseAdapter() {
+        alterar.setText("Alterar");
+        alterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                OkMouseClicked(evt);
+                alterarMouseClicked(evt);
             }
         });
-        Ok.addActionListener(new java.awt.event.ActionListener() {
+        alterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OkActionPerformed(evt);
+                alterarActionPerformed(evt);
             }
         });
 
@@ -116,7 +116,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -132,7 +132,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ok)
+                    .addComponent(alterar)
                     .addComponent(cancelar))
                 .addGap(31, 31, 31))
         );
@@ -157,10 +157,10 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void OkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OkMouseClicked
+    private void alterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alterarMouseClicked
         // TODO add your handling code here:  
         
-    }//GEN-LAST:event_OkMouseClicked
+    }//GEN-LAST:event_alterarMouseClicked
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
         // TODO add your handling code here:
@@ -169,38 +169,39 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
 
     private void pesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarMouseClicked
         // TODO add your handling code here:
-       boolean encontrou = false;//pra indicar se achou ou não
+        boolean encontrou = false;//pra indicar se achou ou não
         int total = fichario.size();//pra contar as fichas
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
            if(ficha.nome.startsWith(EntradaNome.getText())){
-               
-                Object linha[] = { ficha.nome,ficha.endereco, ficha.CPF};
+           achados.add(x);
+                Object linha[] = {ficha.nome, ficha.endereco, ficha.telefone};
                 dtm.addRow(linha);
-               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+               
                encontrou = true;
            }
            //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
    
-        }  
-        if(!encontrou){
-            JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-       }
- 
+        }
     }//GEN-LAST:event_pesquisarMouseClicked
 
-    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
+    private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
         // TODO add your handling code here:
-        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","ATENÇÂO ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
-                this.dispose();  
-            }  
-    }//GEN-LAST:event_OkActionPerformed
+         DefaultTableModel dtm = (DefaultTableModel)Tabela.getModel();
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Alterar?","ATENÇÂO ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+        this.dispose(); 
+             }  
+    }//GEN-LAST:event_alterarActionPerformed
 
+     public Integer retorna(){
+            return achados.get(Tabela.getSelectedRow());
+     }  
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
           try{
-            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
+            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("Funcionario.ser")));
             fichario = (ArrayList<Funcionario>) arqEntrada.readObject();
         }
         catch(ClassNotFoundException e){
@@ -208,7 +209,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         }
         catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null, "Gerando Arquivo de Dados", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
-            File arquivo = new File("funcionario.ser");
+            File arquivo = new File("Funcionario.ser");
             try {
                 arquivo.createNewFile();
             } catch (IOException ex) {
@@ -250,20 +251,21 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PesquisaFuncionario().setVisible(true);
+                new PesquisaFuncionario(new javax.swing.JFrame(),true).setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaNome;
-    private javax.swing.JButton Ok;
     private javax.swing.JTable Tabela;
+    private javax.swing.JButton alterar;
     private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton pesquisar;
     // End of variables declaration//GEN-END:variables
+
 }
 
 

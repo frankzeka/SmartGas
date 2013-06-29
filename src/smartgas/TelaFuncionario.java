@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
 public class TelaFuncionario extends javax.swing.JFrame {
     ArrayList <Funcionario> fichario = new ArrayList <Funcionario>();
     Funcionario ficha = new Funcionario();
-    int total=0;
-    private int atual;
+    int encontrado =-1;
+    boolean altera = false;
     /**
      * Creates new form TelaFuncionario
      */
@@ -55,10 +55,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
         EntradaCPF = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         EntradaSalario = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        EntradaHoras = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        EntradaComissao = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         EntradaEmail = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -82,27 +78,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
         jLabel3.setText("Telefone:");
 
-        EntradaTelefone.setText("(XX)XXXXXXX");
-
         jLabel4.setText("Cidade:");
 
         jLabel5.setText("C.P.F.:");
 
         jLabel6.setText("Salário");
 
-        EntradaSalario.setText("R$ 000,00");
-
-        jLabel7.setText("Carga horária:");
-
-        EntradaHoras.setText("000");
-
-        jLabel8.setText("Comissão:");
-
-        EntradaComissao.setText("R$ 000,00");
-
         jLabel9.setText("e-mail:");
-
-        EntradaEmail.setText("fulano@beltrano.com.br");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -116,36 +98,26 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EntradaEndereco)
+                    .addComponent(EntradaEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .addComponent(EntradaNome)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(EntradaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EntradaSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                    .addComponent(EntradaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EntradaEmail))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(EntradaCidade)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(EntradaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 56, Short.MAX_VALUE)))
                         .addGap(12, 12, 12))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EntradaHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(EntradaComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EntradaSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,17 +136,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(EntradaCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(EntradaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)
-                        .addComponent(EntradaSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(EntradaHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)
-                        .addComponent(EntradaComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(EntradaTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(EntradaSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -251,7 +217,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -260,7 +226,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         try{
-            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
+            ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("Funcionario.ser")));
             fichario = (ArrayList<Funcionario>) arqEntrada.readObject();
         }
         catch(ClassNotFoundException e){
@@ -268,7 +234,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         }
         catch(FileNotFoundException e){
             JOptionPane.showMessageDialog(null, "Gerando Arquivo de Dados", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
-            File arquivo = new File("funcionario.ser");
+            File arquivo = new File("Funcionario.ser");
             try {
                 arquivo.createNewFile();
             } catch (IOException ex) {
@@ -290,36 +256,50 @@ public class TelaFuncionario extends javax.swing.JFrame {
          EntradaTelefone.setText("");
         ficha.cidade=EntradaCidade.getText();
          EntradaCidade.setText("");
-        ficha.CPF=Integer.parseInt(EntradaCPF.getText());
+        ficha.CPF=Long.parseLong(EntradaCPF.getText());
          EntradaCPF.setText("");
         ficha.email=EntradaEmail.getText();
          EntradaEmail.setText("");
         ficha.salario=Float.parseFloat(EntradaSalario.getText());
          EntradaSalario.setText("");
-        ficha.cargahoraria=Integer.parseInt(EntradaHoras.getText());
-         EntradaHoras.setText("");
-        ficha.comissao=(int) Float.parseFloat(EntradaComissao.getText());
-         EntradaComissao.setText("");
-        total++;
-        fichario.add(ficha);
-         try {
-            FileOutputStream arquivo = new FileOutputStream ("funcionario.ser");
+        if (!altera){
+            fichario.add(ficha);
+        }else{
+            fichario.set(encontrado,ficha);
+        }
+        
+        FileOutputStream filestream;
+        try {
+            filestream = new FileOutputStream("Funcionario.ser");
             try {
-                ObjectOutputStream salva = new ObjectOutputStream(arquivo);
-                salva.writeObject(fichario);
-                salva.close();
+                ObjectOutputStream arquivo = new ObjectOutputStream(filestream);
+                arquivo.writeObject(fichario);
+                arquivo.close();
             } catch (IOException ex) {
-                Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
         // TODO add your handling code here:
-        new PesquisaFuncionario().setVisible(true);
+          PesquisaFuncionario tela = new PesquisaFuncionario(new javax.swing.JFrame(), true);
+          tela.setVisible(true);
+          encontrado = tela.retorna();
+          if (encontrado != -1){
+          ficha = fichario.get(encontrado);
+          EntradaNome.setText(ficha.nome);   
+          EntradaEndereco.setText(ficha.endereco);
+          EntradaCPF.setText (Long.toString(ficha.CPF));
+          EntradaCidade.setText(ficha.cidade);
+          EntradaTelefone.setText (ficha.telefone);
+          EntradaSalario.setText(Float.toString(ficha.salario));
+          EntradaEmail.setText(ficha.email);
+          altera = true;            
+          }               
     }//GEN-LAST:event_PesquisarActionPerformed
 
     private void SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SairMouseClicked
@@ -366,10 +346,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaCPF;
     private javax.swing.JTextField EntradaCidade;
-    private javax.swing.JTextField EntradaComissao;
     private javax.swing.JTextField EntradaEmail;
     private javax.swing.JTextField EntradaEndereco;
-    private javax.swing.JTextField EntradaHoras;
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JTextField EntradaSalario;
     private javax.swing.JTextField EntradaTelefone;
@@ -382,11 +360,10 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
 }
