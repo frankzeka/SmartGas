@@ -91,7 +91,7 @@ public class RelatorioClientes {
                ficha = fichario.get(x);
                table.addCell(ficha.nome);
                table.addCell(ficha.endereco);
-               table.addCell(Float.toString(ficha.telefone));
+               table.addCell(ficha.telefone);
                table.addCell(ficha.email);
            }
            doc.add(table); 
