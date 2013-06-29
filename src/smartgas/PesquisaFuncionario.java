@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,7 +46,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
         EntradaNome = new javax.swing.JTextField();
         pesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabela = new javax.swing.JTable();
         Ok = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
@@ -67,7 +68,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -75,7 +76,7 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
                 "Nome", "Endereco", "Telefone"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabela);
 
         Ok.setText("OK");
         Ok.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,26 +169,32 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
 
     private void pesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisarMouseClicked
         // TODO add your handling code here:
-        boolean encontrou = false;//pra indicar se achou ou não
+       boolean encontrou = false;//pra indicar se achou ou não
         int total = fichario.size();//pra contar as fichas
+        DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
-           if(ficha.nome.compareTo(EntradaNome.getText())==0){
-               JOptionPane.showMessageDialog(null, "Achou!", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+           if(ficha.nome.startsWith(EntradaNome.getText())){
+               
+                Object linha[] = { ficha.nome,ficha.endereco, ficha.CPF};
+                dtm.addRow(linha);
+               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
                encontrou = true;
            }
-           JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+           //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
    
         }  
         if(!encontrou){
-            JOptionPane.showMessageDialog(null, "Linha nao encontrada.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
        }
-        
  
     }//GEN-LAST:event_pesquisarMouseClicked
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
         // TODO add your handling code here:
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","ATENÇÂO ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();  
+            }  
     }//GEN-LAST:event_OkActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -250,11 +257,11 @@ public class PesquisaFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaNome;
     private javax.swing.JButton Ok;
+    private javax.swing.JTable Tabela;
     private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton pesquisar;
     // End of variables declaration//GEN-END:variables
 }

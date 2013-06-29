@@ -7,10 +7,8 @@ package smartgas;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,13 +20,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author info48
  */
-public class PesquisaCliente extends javax.swing.JFrame {
+public class PesquisaCliente extends javax.swing.JDialog {
     cliente ficha  = new cliente();
     ArrayList<cliente>  fichario = new ArrayList<cliente>();
+    ArrayList<Integer>  achados = new ArrayList<Integer>();
+       
+  
     /**
      * Creates new form PesquisaCliente
      */
-    public PesquisaCliente() {
+    public PesquisaCliente(java.awt.Frame parent, boolean modal) {
+        super(parent,modal);
         initComponents();
     }
 
@@ -48,9 +50,9 @@ public class PesquisaCliente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
         aluno = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        deletar = new javax.swing.JButton();
+        alterar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
+        Novo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -88,19 +90,24 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
         aluno.setText("Direitos Reservados by Rai");
 
-        jButton1.setText("Ok");
-
-        jButton2.setText("Cancelar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+        alterar.setText("Alterar");
+        alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarActionPerformed(evt);
             }
         });
 
-        deletar.setText("Deletar");
-        deletar.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelar.setText("Cancelar");
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deletarMouseClicked(evt);
+                cancelarMouseClicked(evt);
+            }
+        });
+
+        Novo.setText("Novo");
+        Novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoActionPerformed(evt);
             }
         });
 
@@ -126,12 +133,12 @@ public class PesquisaCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(deletar)
+                .addComponent(cancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Novo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aluno)
                 .addGap(53, 53, 53))
         );
@@ -144,14 +151,14 @@ public class PesquisaCliente extends javax.swing.JFrame {
                     .addComponent(EntradaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Pesquisar)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aluno)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(deletar))
+                    .addComponent(alterar)
+                    .addComponent(cancelar)
+                    .addComponent(Novo))
                 .addGap(28, 28, 28))
         );
 
@@ -171,8 +178,8 @@ public class PesquisaCliente extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-     File teste = new File("cliente.ser"); 
-     if (teste.exists()){
+     File testa = new File("cliente.ser"); 
+     if (testa.exists()){
             try {
                 FileInputStream arquivo = new FileInputStream("cliente.ser");
                 try {
@@ -199,12 +206,11 @@ public class PesquisaCliente extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
         for (int x=0; x<total;x++){ //for
            ficha = fichario.get(x);//pega a ficha atual
-           aluno.setText(ficha.nome);
            if(ficha.nome.startsWith(EntradaNome.getText())){
+               achados.add(x);
                
-                Object linha[] = { ficha.nome,ficha.endereco, ficha.CPF};
-                dtm.addRow(linha);
-               JOptionPane.showMessageDialog(null, "encontrado com sucesso", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+                Object linha[] = {ficha.nome, ficha.endereco, ficha.CPF};
+                dtm.addRow(linha);               
                encontrou = true;
            }
            //JOptionPane.showMessageDialog(null, "Nome dentro do arquivo: "+ficha.nome+" Nome pesquisado: "+EntradaNome.getText(), "SmartGas", JOptionPane.INFORMATION_MESSAGE);
@@ -212,33 +218,36 @@ public class PesquisaCliente extends javax.swing.JFrame {
         }  
         if(!encontrou){
             JOptionPane.showMessageDialog(null, "nome nao encontrado.", "Agenda", JOptionPane.INFORMATION_MESSAGE);
-       }
+        }else{
+       JOptionPane.showMessageDialog(null, "encontrado com sucesso.", "SmartGas", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_PesquisarActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
         // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+                this.dispose();         
+      }
+    }//GEN-LAST:event_cancelarMouseClicked
 
-    private void deletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletarMouseClicked
+    private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
         // TODO add your handling code here:
-        int del = Tabela.getSelectedRow();
-        fichario.remove(del);
+         DefaultTableModel dtm = (DefaultTableModel) Tabela.getModel();
+        if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja alterar?","ATENÇÃO",javax.swing.JOptionPane.YES_NO_OPTION)==0){ 
+            retorna();
+            this.dispose();
+        }  
+    }//GEN-LAST:event_alterarActionPerformed
+
+    private void NovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoActionPerformed
+        // TODO add your handling code here:
+        EntradaNome.setText("");  
+    }//GEN-LAST:event_NovoActionPerformed
+   
+    public Integer retorna(){
+        return achados.get(Tabela.getSelectedRow());
         
-        try {
-            FileOutputStream arquivo = new FileOutputStream ("cliente.ser");
-            try {
-                ObjectOutputStream salva = new ObjectOutputStream(arquivo);
-                salva.writeObject(fichario);
-                salva.close();
-            } catch (IOException ex) {
-                Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TelaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_deletarMouseClicked
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -269,18 +278,18 @@ public class PesquisaCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PesquisaCliente().setVisible(true);
+                new PesquisaCliente(new javax.swing.JFrame(), true).setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EntradaNome;
+    private javax.swing.JButton Novo;
     private javax.swing.JButton Pesquisar;
     private javax.swing.JTable Tabela;
+    private javax.swing.JButton alterar;
     private javax.swing.JLabel aluno;
-    private javax.swing.JButton deletar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

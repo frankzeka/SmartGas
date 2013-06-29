@@ -17,8 +17,9 @@ import java.util.logging.Logger;
 public class Telafornecedor extends javax.swing.JFrame {
 fornecedor ficha  = new fornecedor();
 ArrayList<fornecedor>  fichario = new ArrayList<fornecedor>();
-int atual = 0;// controla a ficha atual
-int total =0;//conta o total de fichas criadas
+int encontrado =-1;
+boolean altera = false;
+ 
 
     /**
      * Creates new form telafornecedor
@@ -55,6 +56,7 @@ int total =0;//conta o total de fichas criadas
         pesquisar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel6.setText("jLabel6");
 
@@ -96,7 +98,7 @@ int total =0;//conta o total de fichas criadas
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(entradacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addComponent(entradacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -154,11 +156,6 @@ int total =0;//conta o total de fichas criadas
         });
 
         sair.setText("Sair");
-        sair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sairMouseClicked(evt);
-            }
-        });
         sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairActionPerformed(evt);
@@ -166,6 +163,13 @@ int total =0;//conta o total de fichas criadas
         });
 
         jLabel5.setText("By almir");
+
+        jButton1.setText("Novo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novo(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,7 +182,9 @@ int total =0;//conta o total de fichas criadas
                 .addComponent(pesquisar)
                 .addGap(28, 28, 28)
                 .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
@@ -191,7 +197,8 @@ int total =0;//conta o total de fichas criadas
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salvar)
                     .addComponent(pesquisar)
-                    .addComponent(sair))
+                    .addComponent(sair)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel5))
         );
@@ -200,10 +207,10 @@ int total =0;//conta o total de fichas criadas
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,8 +245,12 @@ int total =0;//conta o total de fichas criadas
         //atualiza o contador
         //atual++;// faz a mesma coisa que atual=atual+1
         //mostra em qual registro está(registro atual)
-
-        fichario.add(ficha);
+        if (!altera){
+            fichario.add(ficha);
+        }else{
+            fichario.set(encontrado,ficha);
+        }
+        
         FileOutputStream filestream;
         try {
             filestream = new FileOutputStream("fornecedor.ser");
@@ -267,8 +278,7 @@ int total =0;//conta o total de fichas criadas
                     try {
                      Object objeto = fluxo.readObject();
                      fichario = (ArrayList<fornecedor>) objeto ;
-                     total = fichario.size();
-                     atual = total;                                      
+                                                         
 
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -283,27 +293,22 @@ int total =0;//conta o total de fichas criadas
          
     }//GEN-LAST:event_formWindowOpened
 
-    private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
-        // TODO add your handling code here:
-        if  (atual >=total-1){
-            atual = total-1 ;
-        } 
-        else {
-            atual++;
-        }
-
-        ficha = fichario.get(atual);        
-        entradanome.setText(ficha.nome);
-        entradaendereco.setText(ficha.endereco);
-        entradatelefone.setText(Integer.toString(ficha.telefone));
-        entradacidade.setText(ficha.cidade);
-        entradacnpj.setText(Integer.toString(ficha.cnpj));
-        
-    }//GEN-LAST:event_sairMouseClicked
-
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         // TODO add your handling code here:
-        new PesquisaFornecedor().setVisible(true);
+        PesquisaFornecedor tela = new PesquisaFornecedor(new javax.swing.JFrame(), true);
+          tela.setVisible(true);
+          encontrado = tela.retorna();
+          if (encontrado != -1){
+          ficha = fichario.get(encontrado);
+          entradanome.setText(ficha.nome);   
+          entradaendereco.setText(ficha.endereco);
+          entradacnpj.setText (Integer.toString(ficha.cnpj));
+          entradacidade.setText(ficha.cidade);
+          entradatelefone.setText (Integer.toString(ficha.telefone));
+          altera = true;
+          }       
+         
+       
     }//GEN-LAST:event_pesquisarActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
@@ -314,6 +319,15 @@ int total =0;//conta o total de fichas criadas
           
        
     }//GEN-LAST:event_sairActionPerformed
+
+    private void novo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novo
+        // TODO add your handling code here:
+     entradanome.setText("");
+        entradaendereco.setText("");
+        entradatelefone.setText("");
+        entradacidade.setText("");
+        entradacnpj.setText("");   
+    }//GEN-LAST:event_novo
 
     /**
      * @param args the command line arguments
@@ -363,6 +377,7 @@ int total =0;//conta o total de fichas criadas
     private javax.swing.JTextField entradaendereco;
     private javax.swing.JTextField entradanome;
     private javax.swing.JTextField entradatelefone;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -16,11 +16,8 @@ import java.util.logging.Logger;
 public class telaproduto extends javax.swing.JFrame {
  produto ficha  = new produto();
 ArrayList<produto>  fichario = new ArrayList<produto>();
-int atual = 0;// controla a ficha atual
-int total =0;//conta o total de fichas criadas
-private produto fichas;
-
-
+int encontrado =-1;
+boolean altera = false;
     /**
      * Creates new form telaproduto
      */
@@ -52,6 +49,7 @@ private produto fichas;
         Salvar = new javax.swing.JButton();
         Pesquisar = new javax.swing.JButton();
         sair = new javax.swing.JButton();
+        novo = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -164,9 +162,11 @@ private produto fichas;
                 sairMouseClicked(evt);
             }
         });
-        sair.addActionListener(new java.awt.event.ActionListener() {
+
+        novo.setText("Novo");
+        novo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairActionPerformed(evt);
+                novoActionPerformed(evt);
             }
         });
 
@@ -179,7 +179,9 @@ private produto fichas;
                 .addComponent(Salvar)
                 .addGap(43, 43, 43)
                 .addComponent(Pesquisar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(novo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(sair)
                 .addGap(56, 56, 56))
         );
@@ -190,7 +192,8 @@ private produto fichas;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Salvar)
                     .addComponent(Pesquisar)
-                    .addComponent(sair))
+                    .addComponent(sair)
+                    .addComponent(novo))
                 .addGap(59, 59, 59))
         );
 
@@ -200,25 +203,19 @@ private produto fichas;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        if (atual>total){
-            
-            atual=total;
-        }else{
-            atual=atual++;
-   
-        }
-        EntradaTipo.setText(Integer.toString(ficha.quantidade));
-        entradapreçounitario.setText(Float.toString(ficha.precounitario));
-        entradapeso.setText(Integer.toString(ficha.peso));
-        entradaquantidade.setText(ficha.tipo);  
-    }//GEN-LAST:event_sairActionPerformed
-
     private void PesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PesquisarMouseClicked
-        // TODO add your handling code here:    
-        new Pesquisaproduto().setVisible(true);
+        // TODO add your handling code here:          
+          Pesquisaproduto tela = new Pesquisaproduto(new javax.swing.JFrame(), true);
+          tela.setVisible(true);
+          encontrado = tela.retorna();
+          if (encontrado != -1){
+              ficha = fichario.get(encontrado);
+              EntradaTipo.setText(ficha.tipo);
+              entradapeso.setText(Integer.toString(ficha.peso));
+              entradapreçounitario.setText(Float.toString(ficha.precounitario));
+              entradaquantidade.setText(Integer.toString(ficha.quantidade));              
+              altera = true;
+          }
     }//GEN-LAST:event_PesquisarMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -242,21 +239,19 @@ private produto fichas;
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
             }
-        total = fichario.size();
-        atual = total-1;
-        ficha = new produto();
-        ficha = fichario.get(atual);// pega a ficha atual do fichario  
-                
+               
         }
     
     }//GEN-LAST:event_formWindowOpened
 
     private void SalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalvarMouseClicked
         // TODO add your handling code here:
-        ficha  = new produto();       
+        
+        ficha  = new produto();
+                
         ficha.tipo = EntradaTipo.getText();
         ficha.peso = Integer.parseInt(entradapeso.getText());
-        ficha.precounitario = Integer.parseInt(entradapreçounitario.getText());
+        ficha.precounitario = Float.parseFloat(entradapreçounitario.getText());
         ficha.quantidade = Integer.parseInt(entradaquantidade.getText());
         //acabou a coleta de dados
         //Limpa os campos
@@ -264,13 +259,12 @@ private produto fichas;
         entradapeso.setText("");
         entradapreçounitario.setText("");
         entradaquantidade.setText("");
-        //limpando os campos
+        if (!altera){
+            fichario.add(ficha);
+        }else{            
+           fichario.set(encontrado, ficha);
+        }           
         
-        //atualiza o contador
-        atual++;// faz a mesma coisa que atual=atual+1
-        //mostra em qual registro está(registro atual)
-
-        fichario.add(ficha);
         FileOutputStream filestream;
         try {
             filestream = new FileOutputStream("produto.ser");
@@ -292,6 +286,14 @@ private produto fichas;
                 this.dispose();         
       }
     }//GEN-LAST:event_sairMouseClicked
+
+    private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
+        // TODO add your handling code here:
+        EntradaTipo.setText("");
+        entradapeso.setText("");
+        entradapreçounitario.setText("");
+        entradaquantidade.setText("");
+    }//GEN-LAST:event_novoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,6 +351,7 @@ private produto fichas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton novo;
     private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
 }
