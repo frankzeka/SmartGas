@@ -84,12 +84,6 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
 
         jLabel3.setText("Quantidade:");
 
-        entradavalorcompra.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                entradavalorcompraFocusLost(evt);
-            }
-        });
-
         jLabel4.setText("Valor de compra:");
 
         incluir.setText("Incluir");
@@ -343,6 +337,10 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
         fichaP.quantidade = fichaP.quantidade-ficha_item.quantidade;
         fichas_produto.set(indice, fichaP);
         
+        //Calcula o valor Total
+        totalvenda = (Float.parseFloat(entradaquantidade.getText().toString()) * Float.parseFloat(entradavalorcompra.getText()))+totalvenda;
+        jTextFieldTotal.setText(Float.toString(totalvenda));
+        
         //limpa os campos
         entradaquantidade.setText("");
         entradavalorcompra.setText("");
@@ -358,7 +356,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
     private void finalizarvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarvendaActionPerformed
           //salva a venda
           ficha_venda.cod_cliente=ComboC.getSelectedItem().hashCode();
-          ficha_venda.cod_funcionario = 123;
+          ficha_venda.cod_funcionario = ComboF.getSelectedItem().hashCode();
           ficha_venda.data_venda = new Date();
           ficha_venda.valor_total = totalvenda;
           ficha_venda.itensVenda = fichas_item;
@@ -399,12 +397,6 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
          if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Fechar?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
                 this.dispose();  }
     }//GEN-LAST:event_cancelarActionPerformed
-
-    private void entradavalorcompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_entradavalorcompraFocusLost
-        // TODO add your handling code here:
-        totalvenda = (Float.parseFloat(entradaquantidade.getText().toString()) * Float.parseFloat(entradavalorcompra.getText()))+totalvenda;
-        jTextFieldTotal.setText(Float.toString(totalvenda));
-    }//GEN-LAST:event_entradavalorcompraFocusLost
 
     private void ComboPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPActionPerformed
         // TODO add your handling code here:

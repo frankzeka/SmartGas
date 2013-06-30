@@ -67,6 +67,8 @@ public class telacompra extends javax.swing.JFrame {
         jTextFieldTotal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        ComboFunc = new javax.swing.JComboBox();
 
         setTitle("Tela de Compra");
         setName("formtelacompra"); // NOI18N
@@ -76,11 +78,7 @@ public class telacompra extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setLayout(null);
-
         jLabel1.setText("Fornecedor:");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(40, 40, 80, 17);
 
         tabelaitens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,9 +97,6 @@ public class telacompra extends javax.swing.JFrame {
             }
         });
         itensvenda.setViewportView(tabelaitens);
-
-        jPanel1.add(itensvenda);
-        itensvenda.setBounds(40, 270, 420, 150);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -146,7 +141,7 @@ public class telacompra extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(6, 6, 6)
                         .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,14 +157,8 @@ public class telacompra extends javax.swing.JFrame {
                     .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(30, 90, 450, 140);
-
-        jPanel1.add(entradafornecedor);
-        entradafornecedor.setBounds(130, 40, 350, 25);
 
         FinalizarCompra.setText("Finalizar Compra");
         FinalizarCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -177,8 +166,6 @@ public class telacompra extends javax.swing.JFrame {
                 FinalizarCompraActionPerformed(evt);
             }
         });
-        jPanel1.add(FinalizarCompra);
-        FinalizarCompra.setBounds(90, 480, 130, 29);
 
         Cancelar.setText("Cancelar");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,26 +173,82 @@ public class telacompra extends javax.swing.JFrame {
                 CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar);
-        Cancelar.setBounds(300, 480, 90, 29);
 
         jTextFieldTotal.setEditable(false);
         jTextFieldTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total"));
-        jPanel1.add(jTextFieldTotal);
-        jTextFieldTotal.setBounds(330, 430, 130, 40);
 
         jLabel5.setText("R$");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(310, 450, 20, 17);
 
         jLabel6.setText("by Arildo");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(440, 500, 60, 17);
+
+        jLabel7.setText("Funcionário:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(itensvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(FinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(entradafornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboFunc, 0, 350, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(ComboFunc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(entradafornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(23, 23, 23)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(itensvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel5))
+                    .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FinalizarCompra)
+                    .addComponent(Cancelar)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel6))))
+        );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(518, 552));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-518)/2, (screenSize.height-552)/2, 518, 552);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -234,6 +277,10 @@ public class telacompra extends javax.swing.JFrame {
         try{
             ObjectInputStream arqEntrada = new ObjectInputStream(new FileInputStream(new File("funcionario.ser")));
             fichas_funcionario = (ArrayList<Funcionario>) arqEntrada.readObject();
+            int totalF = fichas_funcionario.size();
+            for (int x=0; x<totalF;x++){ //for
+                ComboFunc.addItem(fichas_funcionario.get(x).nome);
+            }
             arqEntrada.close();
         }
         catch(ClassNotFoundException e){
@@ -292,7 +339,7 @@ public class telacompra extends javax.swing.JFrame {
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
         // TODO add your handling code here:          
           ficha_compra.cod_fornecedor =  entradafornecedor.getSelectedItem().hashCode();
-          ficha_compra.cod_funcionario = 123;
+          ficha_compra.cod_funcionario = ComboFunc.getSelectedItem().hashCode();
           ficha_compra.data_compra = new Date();
           ficha_compra.itenscompra=fichas_itens;
           ficha_compra.valor_total = totalcompra;
@@ -377,6 +424,7 @@ public class telacompra extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
+    private javax.swing.JComboBox ComboFunc;
     private javax.swing.JButton FinalizarCompra;
     private javax.swing.JButton Incluir;
     private javax.swing.JTextField entradaPreco;
@@ -390,6 +438,7 @@ public class telacompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldTotal;

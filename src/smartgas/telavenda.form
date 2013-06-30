@@ -197,9 +197,6 @@
         <Component class="javax.swing.JTextField" name="entradaquantidade">
         </Component>
         <Component class="javax.swing.JTextField" name="entradavalorcompra">
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="entradavalorcompraFocusLost"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
