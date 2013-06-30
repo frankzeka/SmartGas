@@ -61,6 +61,8 @@ public class telacompra extends javax.swing.JFrame {
         entradaquantidade = new javax.swing.JSpinner();
         entradaPreco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        qtde_estoque = new javax.swing.JLabel();
         entradafornecedor = new javax.swing.JComboBox();
         FinalizarCompra = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
@@ -111,14 +113,19 @@ public class telacompra extends javax.swing.JFrame {
             }
         });
 
-        entradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço Unitário"));
-        entradaPreco.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                entradaPrecoFocusLost(evt);
+        entradaproduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entradaprodutoActionPerformed(evt);
             }
         });
 
+        entradaPreco.setBorder(javax.swing.BorderFactory.createTitledBorder("Preço Unitário"));
+
         jLabel4.setText("R$");
+
+        jLabel8.setText("Quantidade em estoque:");
+
+        qtde_estoque.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -140,8 +147,12 @@ public class telacompra extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addGap(6, 6, 6)
-                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(entradaPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qtde_estoque)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +162,11 @@ public class telacompra extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(entradaproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Incluir))
-                .addGap(29, 29, 29)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(qtde_estoque))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,13 +341,18 @@ public class telacompra extends javax.swing.JFrame {
         ficha_item.preco_custo = Float.parseFloat(entradaPreco.getText());
         ficha_item.quantidade =  Integer.parseInt(entradaquantidade.getValue().toString());
         fichas_itens.add(ficha_item);        
-        jTextFieldTotal.setText(Float.toString(totalcompra));
-        entradaPreco.setText("");
+        
         //atualiza estoque do produto mas não salva no arquivo
         int indice =entradaproduto.getSelectedIndex();
         ficha_produto = fichas_produto.get(indice);
         ficha_produto.quantidade = ficha_item.quantidade+ficha_produto.quantidade;
         fichas_produto.set(indice, ficha_produto);
+        
+        //limpa e atualiza os dados
+        totalcompra = (Float.parseFloat(entradaquantidade.getValue().toString()) * Float.parseFloat(entradaPreco.getText()))+totalcompra;
+        entradaprodutoActionPerformed(evt);
+        jTextFieldTotal.setText(Float.toString(totalcompra));
+        entradaPreco.setText("");
         
     }//GEN-LAST:event_IncluirActionPerformed
 
@@ -383,10 +403,12 @@ public class telacompra extends javax.swing.JFrame {
             }  
     }//GEN-LAST:event_CancelarActionPerformed
 
-    private void entradaPrecoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_entradaPrecoFocusLost
+    private void entradaprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaprodutoActionPerformed
         // TODO add your handling code here:
-         totalcompra = (Float.parseFloat(entradaquantidade.getValue().toString()) * Float.parseFloat(entradaPreco.getText()))+totalcompra;
-    }//GEN-LAST:event_entradaPrecoFocusLost
+        //Pega a Quantidade em estoque
+        ficha_produto = fichas_produto.get(entradaproduto.getSelectedIndex());
+        qtde_estoque.setText(Integer.toString(ficha_produto.quantidade));
+    }//GEN-LAST:event_entradaprodutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,9 +461,11 @@ public class telacompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldTotal;
+    private javax.swing.JLabel qtde_estoque;
     private javax.swing.JTable tabelaitens;
     // End of variables declaration//GEN-END:variables
 }
