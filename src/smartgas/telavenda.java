@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,7 +27,11 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
     ArrayList <Funcionario> fichas_funcionario = new ArrayList<Funcionario>();
     ArrayList <produto> fichas_produto = new ArrayList<produto>();
     ArrayList <venda> fichas_venda = new ArrayList<venda>();
+    ArrayList <itens_venda> fichas_item = new ArrayList<itens_venda>();
+    
     venda ficha_venda = new venda();
+    itens_venda ficha_item = new itens_venda();
+    produto fichaP = new produto();
     float totalvenda = 0;
     /**
      * Creates new form telavenda
@@ -54,6 +59,8 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
         jLabel4 = new javax.swing.JLabel();
         incluir = new javax.swing.JButton();
         ComboP = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        qtde_estoque = new javax.swing.JLabel();
         itensvenda = new javax.swing.JScrollPane();
         tabelaitens = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -92,6 +99,16 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
             }
         });
 
+        ComboP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboPActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Quantidade em estoque:");
+
+        qtde_estoque.setText("0");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -100,21 +117,27 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel4))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qtde_estoque)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +147,11 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
                     .addComponent(jLabel2)
                     .addComponent(ComboP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(incluir))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(qtde_estoque))
+                .addGap(5, 5, 5)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(entradaquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(entradavalorcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,17 +323,45 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
 
     private void incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluirActionPerformed
         // TODO add your handling code here:
+       
+        if (fichaP.quantidade>Integer.parseInt(entradaquantidade.getText()))
+        {
         Object linha[] = {ComboP.getSelectedItem(),entradaquantidade.getText(),entradavalorcompra.getText()};
         DefaultTableModel dtm = (DefaultTableModel) tabelaitens.getModel();
         dtm.addRow(linha);
+        
+        //inclui um item de venda
+        ficha_item.cod_produto = ComboP.getSelectedItem().hashCode();
+        ficha_item.cod_venda = ficha_venda.hashCode();
+        ficha_item.preco_venda = Float.parseFloat(entradavalorcompra.getText());
+        ficha_item.quantidade = Integer.parseInt(entradaquantidade.getText());
+        fichas_item.add(ficha_item);
+        
+        //altera o estoque do produto
+        int indice = ComboP.getSelectedIndex();
+        fichaP = fichas_produto.get(indice);
+        fichaP.quantidade = fichaP.quantidade-ficha_item.quantidade;
+        fichas_produto.set(indice, fichaP);
+        
+        //limpa os campos
         entradaquantidade.setText("");
         entradavalorcompra.setText("");
+        ComboPActionPerformed(evt);
+        }
+        else
+        {
+          JOptionPane.showMessageDialog(null, "Quantidade insuficiente de produtos no estoque", "SmartGas", JOptionPane.ERROR_MESSAGE);  
+          jTextFieldTotal.setText("");
+        }
     }//GEN-LAST:event_incluirActionPerformed
 
     private void finalizarvendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarvendaActionPerformed
-          venda ficha_venda = new venda();
+          //salva a venda
           ficha_venda.cod_cliente=ComboC.getSelectedItem().hashCode();
           ficha_venda.cod_funcionario = 123;
+          ficha_venda.data_venda = new Date();
+          ficha_venda.valor_total = totalvenda;
+          ficha_venda.itensVenda = fichas_item;
       
           fichas_venda.add(ficha_venda);
           try {
@@ -320,6 +375,20 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+          FileOutputStream filestream;
+        try {
+            filestream = new FileOutputStream("produto.ser");
+            try {
+                ObjectOutputStream arquivo = new ObjectOutputStream(filestream);
+                arquivo.writeObject(fichas_produto);
+                arquivo.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
           this.dispose();
                // TODO add your handling code here:
@@ -336,6 +405,13 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
         totalvenda = (Float.parseFloat(entradaquantidade.getText().toString()) * Float.parseFloat(entradavalorcompra.getText()))+totalvenda;
         jTextFieldTotal.setText(Float.toString(totalvenda));
     }//GEN-LAST:event_entradavalorcompraFocusLost
+
+    private void ComboPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPActionPerformed
+        // TODO add your handling code here:
+        //Pega a Quantidade em estoque
+        fichaP = fichas_produto.get(ComboP.getSelectedIndex());
+        qtde_estoque.setText(Integer.toString(fichaP.quantidade));
+    }//GEN-LAST:event_ComboPActionPerformed
     
     /**
      * @param args the command line arguments
@@ -394,8 +470,10 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldTotal;
+    private javax.swing.JLabel qtde_estoque;
     private javax.swing.JTable tabelaitens;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package smartgas;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,7 +17,8 @@ public class venda implements Serializable{
     int cod_cliente;
     int cod_funcionario;
     Date data_venda;
-    float valor_total;    
+    float valor_total;
+    ArrayList<itens_venda> itensVenda;
 }
 
 //
