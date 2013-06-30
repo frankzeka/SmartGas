@@ -324,7 +324,7 @@ ArrayList <cliente> fichas_cliente = new ArrayList<cliente>();
     private void incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluirActionPerformed
         // TODO add your handling code here:
        
-        if (fichaP.quantidade>Integer.parseInt(entradaquantidade.getText()))
+        if (fichaP.quantidade>=Integer.parseInt(entradaquantidade.getText()))
         {
         Object linha[] = {ComboP.getSelectedItem(),entradaquantidade.getText(),entradavalorcompra.getText()};
         DefaultTableModel dtm = (DefaultTableModel) tabelaitens.getModel();
