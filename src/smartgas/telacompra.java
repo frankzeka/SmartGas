@@ -30,6 +30,7 @@ public class telacompra extends javax.swing.JFrame {
     ArrayList<compra>  fichas_compra = new ArrayList<compra>();
     ArrayList<itens_compra>fichas_itens = new ArrayList<itens_compra>();
     compra ficha_compra = new compra();
+    produto ficha_produto = new produto();
     float totalcompra = 0;
 
     /**
@@ -280,6 +281,12 @@ public class telacompra extends javax.swing.JFrame {
         fichas_itens.add(ficha_item);        
         jTextFieldTotal.setText(Float.toString(totalcompra));
         entradaPreco.setText("");
+        //atualiza estoque do produto mas não salva no arquivo
+        int indice =entradaproduto.getSelectedIndex();
+        ficha_produto = fichas_produto.get(indice);
+        ficha_produto.quantidade = ficha_item.quantidade+ficha_produto.quantidade;
+        fichas_produto.set(indice, ficha_produto);
+        
     }//GEN-LAST:event_IncluirActionPerformed
 
     private void FinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarCompraActionPerformed
@@ -290,7 +297,8 @@ public class telacompra extends javax.swing.JFrame {
           ficha_compra.itenscompra=fichas_itens;
           ficha_compra.valor_total = totalcompra;
           fichas_compra.add(ficha_compra);
-         try {
+           if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Finalizar a Compra?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
+               try {
             FileOutputStream  arquivo = new FileOutputStream("compra.ser");
            try {
                 ObjectOutputStream salva = new  ObjectOutputStream (arquivo);
@@ -302,9 +310,23 @@ public class telacompra extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(telaproduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-       if(javax.swing.JOptionPane.showConfirmDialog(null,"Deseja Finalizar a Compra?","atenção ",javax.swing.JOptionPane.YES_NO_OPTION )==0){  
-                this.dispose();  
+         FileOutputStream filestream;
+        try {
+            filestream = new FileOutputStream("produto.ser");
+            try {
+                ObjectOutputStream arquivo = new ObjectOutputStream(filestream);
+                arquivo.writeObject(fichas_produto);
+                arquivo.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Telafornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+               this.dispose();  
        }
+         
     }//GEN-LAST:event_FinalizarCompraActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
